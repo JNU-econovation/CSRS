@@ -26,7 +26,7 @@
 
 ## Tech Stack
 
-<div align ="center"><img src ="./img/techstack.png"/></div>
+<div align ="center"><img src ="./img/TechStack.png"/></div>
 
 
 
