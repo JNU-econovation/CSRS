@@ -8,6 +8,7 @@ export const NavBtn = styled.a`
     font-family: NanumGothic KR;
     font-size: 0.9em;
     font-weight: 500;
+    margin: 2rem;
     &:hover {
         text-decoration: underline;
     }
