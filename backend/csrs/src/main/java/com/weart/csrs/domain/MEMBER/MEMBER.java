@@ -52,4 +52,5 @@ public class MEMBER extends BaseTimeEntity {
     public String getRoleKey() {
         return this.role.getKey();
     }
+
 }

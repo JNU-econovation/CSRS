@@ -5,7 +5,6 @@ import com.weart.csrs.domain.MEMBER.MEMBER;
 import com.weart.csrs.service.Role;
 import lombok.Builder;
 import lombok.Getter;
-import org.springframework.security.core.userdetails.User;
 
 import java.util.Map;
 
@@ -15,7 +14,6 @@ public class OAuthAttributes {
     private String nameAttributeKey;
     private String name;
     private String email;
-    private String picture;
 
     @Builder
     public OAuthAttributes(Map<String, Object> attributes, String nameAttributeKey, String name, String email) {
@@ -52,8 +50,9 @@ public class OAuthAttributes {
                 .build();
     }
 
+
     public MEMBER toEntity() {
-        return User.builder()
+        return MEMBER.builder()
                 .name(name)
                 .email(email)
                 .role(Role.GUEST)
