@@ -1,11 +1,18 @@
-import { NavBtn } from "./style";
+import { NavLink } from "./style";
 import { BrowserRouter as Router } from "react-router-dom";
 
-function Btn({ children }) {
+function Btn({ className, children, href }) {
+    if (href) {
+        return (
+            <div className={className}>
+                <NavLink href={href}>{children}</NavLink>
+            </div>
+        );
+    }
     return (
-        <Router>
-            <NavBtn>{children}</NavBtn>
-        </Router>
+        <div className={className}>
+            <NavLink className={className}>{children}</NavLink>
+        </div>
     );
 }
 export default Btn;
