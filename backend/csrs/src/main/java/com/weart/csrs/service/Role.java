@@ -2,7 +2,6 @@ package com.weart.csrs.service;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Admin;
 
 @Getter
 @RequiredArgsConstructor
