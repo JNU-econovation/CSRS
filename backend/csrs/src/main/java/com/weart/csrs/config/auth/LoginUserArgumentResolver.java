@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 @Component
 public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver {
     private final HttpSession httpSession;
-
+  
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
         boolean isLoginUserAnnotation = parameter.getParameterAnnotation(LoginUser.class) != null;
