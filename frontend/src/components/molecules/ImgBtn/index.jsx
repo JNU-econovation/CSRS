@@ -2,9 +2,9 @@ import React from "react";
 
 import * as Styled from "./style";
 
-function ImgBtn({ src, alt, ...props }) {
+function ImgBtn({ src, alt, width, ...props }) {
     return (
-        <Styled.Button {...props} width="20px">
+        <Styled.Button {...props} width={width}>
             <Styled.Image alt={alt} src={src} />
         </Styled.Button>
     );

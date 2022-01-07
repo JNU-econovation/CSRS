@@ -1,15 +1,26 @@
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
-export const NavLink = styled.a`
+const ButtonStyle = css`
     cursor: pointer;
     border: none;
-    background: ${(props) => props.img || "inherit"};
+    background: inherit;
+    text-decoration: none;
+    color: black;
     font-family: NanumGothic KR;
-    font-size: 0.9em;
-    font-weight: 500;
-    margin: 2rem;
-    &:hover {
-        text-decoration: underline;
+`;
+
+export const NavBtn = styled.button`
+    ${ButtonStyle}
+`;
+export const NavLink = styled(Link)`
+    ${ButtonStyle}
+    &:focus,
+    &:hover,
+    &:visited,
+    &:link,
+    &:active {
+        text-decoration: none;
+        color: black;
     }
 `;

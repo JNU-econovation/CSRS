@@ -9,9 +9,10 @@ export const Button = styled(Btn)`
     align-items: center;
     border: 0;
     background: none;
-    margin: 0.2rem;
+    margin: 0.5rem;
     padding: 0;
-    width: 20px;
+    width: max(${(props) => props.width || "100%"}, 20px);
+    font-size: 0.9em;
 `;
 
 export const Image = styled(Img)`
