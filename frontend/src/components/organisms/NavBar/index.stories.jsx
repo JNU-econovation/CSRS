@@ -1,8 +1,8 @@
-import React from "react";
-import NavBar from ".";
-import { text } from "@storybook/addon-knobs";
+import React from 'react';
+import NavBar from '.';
+import { text } from '@storybook/addon-knobs';
 export default {
-    title: "organisms / NavBar",
+  title: 'organisms / NavBar'
 };
 
 export const StyledNavBar = () => <NavBar></NavBar>;

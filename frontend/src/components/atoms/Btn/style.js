@@ -1,26 +1,26 @@
-import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
+import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const ButtonStyle = css`
-    cursor: pointer;
-    border: none;
-    background: inherit;
-    text-decoration: none;
-    color: black;
-    font-family: NanumGothic KR;
+  cursor: pointer;
+  border: none;
+  background: inherit;
+  text-decoration: none;
+  color: black;
+  font-family: NanumGothic KR;
 `;
 
 export const NavBtn = styled.button`
-    ${ButtonStyle}
+  ${ButtonStyle}
 `;
 export const NavLink = styled(Link)`
-    ${ButtonStyle}
-    &:focus,
+  ${ButtonStyle}
+  &:focus,
     &:hover,
     &:visited,
     &:link,
     &:active {
-        text-decoration: none;
-        color: black;
-    }
+    text-decoration: none;
+    color: black;
+  }
 `;

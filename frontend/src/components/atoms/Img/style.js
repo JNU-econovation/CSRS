@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Img = styled.img`
-    width: inherit;
-    height: inherit;
-    object-fit: inherit;
-    cursor: pointer;
+  width: inherit;
+  height: inherit;
+  object-fit: inherit;
+  cursor: pointer;
 `;

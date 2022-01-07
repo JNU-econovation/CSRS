@@ -1,20 +1,22 @@
-import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import Btn from ".";
-import { text } from "@storybook/addon-knobs";
+import Btn from '.';
+import { text } from '@storybook/addon-knobs';
 export default {
-    title: "Atoms / Btn",
+  title: 'Atoms / Btn'
 };
 
 export const anchor = () => {
-    return (
-        <>
-            <Btn children={text("Content", "로그인")} to={"/"}></Btn>
-        </>
-    );
+  return (
+    <>
+      <Btn children={text('Content', '로그인')} to={'/'}></Btn>
+    </>
+  );
 };
 
 export const imgBtn = () => {
-    return <Btn children={text("ax", "")} img={"url(/assets/img/logo.png)"}></Btn>;
+  return (
+    <Btn children={text('ax', '')} img={'url(/assets/img/logo.png)'}></Btn>
+  );
 };
