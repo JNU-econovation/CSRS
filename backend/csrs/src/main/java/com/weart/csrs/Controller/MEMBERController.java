@@ -10,7 +10,7 @@ public class MEMBERController {
     @Autowired
     MEMBERService memberService;
 
-    @RequestMapping(value = "/createMember.do",method = RequestMethod.POST)
+    @RequestMapping(value = "/createMember.do",method = RequestMethod.GET)
     public String joinUs(MEMBER member){
 
         memberService.createMember(member);
