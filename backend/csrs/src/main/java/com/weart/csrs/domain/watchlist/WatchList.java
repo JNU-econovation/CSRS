@@ -1,4 +1,4 @@
-package com.weart.csrs.domain.watchList;
+package com.weart.csrs.domain.watchlist;
 
 import com.weart.csrs.domain.art.Art;
 
