@@ -15,8 +15,4 @@ export const Button = styled(Btn)`
   font-size: 0.9em;
 `;
 
-export const Image = styled(Img)`
-  &:hover {
-    transition: opacity 1s;
-  }
-`;
+export const Image = styled(Img)``;

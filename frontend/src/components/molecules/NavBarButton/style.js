@@ -8,6 +8,9 @@ export const NavButtonContainer = styled.div`
 `;
 
 export const NavButton = styled(Btn)`
+  display: inline-block;
   font-size: 0.9rem;
   padding: 0.7em;
+
+  white-space: nowrap;
 `;
