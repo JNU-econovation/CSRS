@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 
 
 @RequiredArgsConstructor
@@ -16,7 +17,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final CustomOAuth2UserService customUserTypesOAuth2UserService;
 
     @Override
-
     public void configure(WebSecurity web) throws Exception {
 
         web.ignoring().antMatchers("/css/**", "/script/**", "image/**");
@@ -24,7 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception{
+    public void configure(HttpSecurity http) throws Exception{
         http.csrf().disable();
         http.headers().frameOptions().disable()
     //                .and()
@@ -44,9 +44,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .oauth2Login()
                     .userInfoEndpoint()
                         .userService(customUserTypesOAuth2UserService);
+        http.csrf().disable()
+                // 시큐리티는 기본적으로 세션을 사용
+                // 여기서는 세션을 사용하지 않기 때문에 세션 설정을 Stateless 로 설정
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+
+                // h2-console 을 위한 설정을 추가
+                .and()
+                .headers()
+                .frameOptions()
+                .sameOrigin()
+
+                // 로그인, 회원가입 API 는 토큰이 없는 상태에서 요청이 들어오기 때문에 permitAll 설정
+                .and()
+                .authorizeRequests()
+                .antMatchers("/", "/auth/**").permitAll();
     }
+//
 //    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
+//    public void configure(HttpSecurity http) throws Exception {
 //        http.csrf().disable()
 //
 //                // 시큐리티는 기본적으로 세션을 사용
@@ -63,12 +80,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                // 로그인, 회원가입 API 는 토큰이 없는 상태에서 요청이 들어오기 때문에 permitAll 설정
 //                .and()
 //                .authorizeRequests()
-//                .antMatchers("/", "/auth/**").permitAll()
-////
-////                    .antMatchers("/member/list", "/restaurant/list", "/title/**", "/theme/**", "/special/**").hasRole("ADMIN")
-////                    .antMatchers(HttpMethod.POST, "/notice", "/restaurant").hasRole("ADMIN")
-////                    .antMatchers(HttpMethod.PUT, "/notice/{\\d+}", "/restaurant/{\\d+}").hasRole("ADMIN")
-////                    .antMatchers(HttpMethod.DELETE, "/notice/{\\d+}", "/restaurant/{\\d+}").hasRole("ADMIN")
+//                .antMatchers("/", "/auth/**").permitAll();
+//
+//                    .antMatchers("/member/list", "/restaurant/list", "/title/**", "/theme/**", "/special/**").hasRole("ADMIN")
+//                    .antMatchers(HttpMethod.POST, "/notice", "/restaurant").hasRole("ADMIN")
+//                    .antMatchers(HttpMethod.PUT, "/notice/{\\d+}", "/restaurant/{\\d+}").hasRole("ADMIN")
+//                    .antMatchers(HttpMethod.DELETE, "/notice/{\\d+}", "/restaurant/{\\d+}").hasRole("ADMIN")
 //
 //                .anyRequest().authenticated()
 //
