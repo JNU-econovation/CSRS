@@ -7,7 +7,8 @@ import java.util.Date;
 
 @Entity
 public class Bid {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "BID_ID")
     private Long id;
 

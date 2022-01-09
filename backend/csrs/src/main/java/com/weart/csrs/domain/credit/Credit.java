@@ -6,7 +6,8 @@ import javax.persistence.*;
 
 @Entity
 public class Credit {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne

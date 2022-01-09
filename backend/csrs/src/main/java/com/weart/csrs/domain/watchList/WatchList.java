@@ -7,7 +7,6 @@ import java.util.Date;
 
 @Entity
 public class WatchList {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "WATCH_LIST_ID")
@@ -15,7 +14,7 @@ public class WatchList {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ART_ID")
-    private Art artId;
+    private Art art;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)

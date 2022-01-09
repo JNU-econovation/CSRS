@@ -5,7 +5,6 @@ import java.util.Date;
 
 @Entity
 public class Art {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ART_ID")

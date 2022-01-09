@@ -7,7 +7,8 @@ import java.util.Date;
 
 @Entity
 public class SuccessfulBid {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "SUCCESSFUL_BID_ID")
     private Long id;
 
