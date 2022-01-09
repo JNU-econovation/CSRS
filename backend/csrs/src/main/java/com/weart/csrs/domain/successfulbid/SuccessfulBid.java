@@ -5,6 +5,7 @@ import com.weart.csrs.domain.bid.Bid;
 import javax.persistence.*;
 import java.util.Date;
 
+@Entity
 public class SuccessfulBid {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "SUCCESSFUL_BID_ID")
