@@ -14,6 +14,7 @@ public class SuccessfulBid {
 
     @OneToOne
     @JoinColumn(name = "BID_ID")
+    @Column(unique = true)
     private Bid bid;
 
     @Column(nullable = false)

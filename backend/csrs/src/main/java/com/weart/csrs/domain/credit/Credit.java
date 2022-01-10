@@ -12,6 +12,7 @@ public class Credit {
 
     @OneToOne
     @JoinColumn(name = "SUCCESSFUL_BID_ID")
+    @Column(unique = true)
     private SuccessfulBid successfulBid;
 
     @Column(nullable = false)
