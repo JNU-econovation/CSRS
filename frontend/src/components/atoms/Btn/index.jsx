@@ -8,11 +8,13 @@ function Btn({ className, children, href, to }) {
       </NavLink>
     );
   }
-  if (to)
-    <NavLink className={className} to={'/'}>
-      {children}
-    </NavLink>;
-
+  if (to) {
+    return (
+      <NavLink className={className} to={to}>
+        {children}
+      </NavLink>
+    );
+  }
   return <NavBtn className={className}>{children}</NavBtn>;
 }
 export default Btn;

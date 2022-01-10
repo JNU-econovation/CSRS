@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import Btn from 'components/atoms/Btn';
 
 export const NavButtonContainer = styled.div`

@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'index.css';
-import NavBar from 'components/organisms/NavBar';
+import Splash from 'pages/Splash';
+
 function App() {
   return (
     <Router>
-      <NavBar></NavBar>
       <Routes>
-        <Route></Route>
+        <Route path="/" element={<Splash />}></Route>
       </Routes>
     </Router>
   );
