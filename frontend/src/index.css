@@ -1,27 +1,34 @@
 @font-face {
-    font-family: "NanumGothic KR";
-    font-style: normal;
-    font-weight: 100;
-    src: url("assets/fonts/NanumGothicLight.otf") format("truetype");
+  font-family: 'NanumGothic KR';
+  font-style: normal;
+  font-weight: 100;
+  src: url('assets/fonts/NanumGothicLight.otf') format('truetype');
 }
 
 @font-face {
-    font-family: "NanumGothic KR";
-    font-style: normal;
-    font-weight: normal;
-    src: url("assets/fonts/NanumGothic.otf") format("truetype");
+  font-family: 'NanumGothic KR';
+  font-style: normal;
+  font-weight: normal;
+  src: url('assets/fonts/NanumGothic.otf') format('truetype');
 }
 
 @font-face {
-    font-family: "NanumGothic KR";
-    font-style: normal;
-    font-weight: 500;
-    src: url("assets/fonts/NanumGothicBold.otf") format("truetype");
+  font-family: 'NanumGothic KR';
+  font-style: normal;
+  font-weight: 500;
+  src: url('assets/fonts/NanumGothicBold.otf') format('truetype');
 }
 
 @font-face {
-    font-family: "NanumGothic KR";
-    font-style: normal;
-    font-weight: bold;
-    src: url("assets/fonts/NanumGothicExtraBold.otf") format("truetype");
+  font-family: 'NanumGothic KR';
+  font-style: normal;
+  font-weight: bold;
+  src: url('assets/fonts/NanumGothicExtraBold.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Baskervile';
+  font-style: normal;
+  font-weight: normal;
+  src: url('assets/fonts/LibreBaskerville.otf') format('truetype');
 }
