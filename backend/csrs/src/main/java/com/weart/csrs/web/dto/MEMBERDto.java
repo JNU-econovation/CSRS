@@ -1,6 +1,7 @@
 package com.weart.csrs.web.dto;
 
 import com.weart.csrs.domain.MEMBER.MEMBER;
+import com.weart.csrs.service.Role;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ public class MEMBERDto {
     private int id;
     private String name;
     private String email;
+    private Role role;
 
     //MEMBER 객체로 변환
     public MEMBER toEntity(){
@@ -20,6 +22,7 @@ public class MEMBERDto {
                 .id(id)
                 .name(name)
                 .email(email)
+                .role(role)
                 .build();
     }
 
