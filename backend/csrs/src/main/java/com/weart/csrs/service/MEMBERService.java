@@ -9,6 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
+import java.util.Optional;
+
 @Transactional
 @Getter
 @Service
@@ -16,8 +19,11 @@ public class MEMBERService {
 
     private final MEMBERRepository memberRepository;
 
-    public MEMBER getByName(String name) throws Exception {
+    public List<MEMBER> getByName(String name) throws Exception {
         return memberRepository.findByName(name);
+    }
+    public Optional<MEMBER> getByEmail(String email) throws Exception {
+        return memberRepository.findByEmail(email);
     }
 
     @Autowired
@@ -32,13 +38,14 @@ public class MEMBERService {
         memberRepository.save(member);
     }
 
+
     //Email로 계정 하나만 생성 가능.
-    private void validateDuplicateMember(MEMBER member) {
-        memberRepository.findByEmail(member.getEmail())
-                .ifPresent(m -> {
-                    throw new IllegalStateException("이미 존재하는 회원입니다.");
-                });
-    }
+//    private void validateDuplicateMember(MEMBER member) {
+//        memberRepository.findByEmail(member.getEmail())
+//                .ifPresent(m -> {
+//                    throw new IllegalStateException("이미 존재하는 회원입니다.");
+//                });
+//    }
 
     @RequestMapping(value="/login.do",method= RequestMethod.POST)
     public String loginMember(MEMBER member){
