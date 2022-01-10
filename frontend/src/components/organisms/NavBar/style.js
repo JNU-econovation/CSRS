@@ -6,7 +6,6 @@ export const NavBarContainer = styled.nav`
   align-items: center;
   box-shadow: 0px 3px #ececec;
   width: max(100%, 750px);
-  height: 70px;
 `;
 
 export const NavBarButtonContainer = styled.div`

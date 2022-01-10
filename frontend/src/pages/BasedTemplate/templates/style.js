@@ -8,10 +8,9 @@ export const ChildrenWrapper = styled.div`
   ${commonStyle}
   display:flex;
   justify-content: center;
-  align-items: center;
   padding: 0;
-  min-height: 91vh;
   min-width: 800px;
+  min-height: 88vh;
 `;
 
 export const HeaderWrapper = styled.div`
@@ -21,7 +20,7 @@ export const HeaderWrapper = styled.div`
   ${commonStyle}
 `;
 
-export const FooterWrapper = styled.div`
+export const FooterWrapper = styled.div`s
   ${commonStyle}
   height: 21vh;
   max-height: 20rem;

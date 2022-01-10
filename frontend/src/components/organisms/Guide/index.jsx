@@ -9,8 +9,8 @@ function Guide() {
   return (
     <S.SplashContainer to={'/main'}>
       <S.LogoBtn alt={'logo'} src={img.LogoOnlyImage}></S.LogoBtn>
-      <LogoText size={'6rem'}>WE : ART</LogoText>
-      <LogoText size={'1.875rem'}>Art auction platform by JNU</LogoText>
+      <LogoText>WE : ART</LogoText>
+      <LogoText subtitle>Art auction platform by JNU</LogoText>
       <S.GuideKr>
         경매를 통해 개인 창작물들을 자유롭게 판매하고 구매해보세요
       </S.GuideKr>
