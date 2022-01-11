@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -26,6 +28,13 @@ public class ArtService {
         Art art = artRepository.findById(artId)
                 .orElseThrow(() -> new RuntimeException(NOT_FOUND_ART_MESSAGE));
         return new ArtResponeDto(art);
+    }
+
+    @Transactional
+    public List<ArtResponeDto> selectAll() {
+        return artRepository.findAll().stream()
+                .map(ArtResponeDto::new)
+                .collect(Collectors.toList());
     }
 
     @Transactional
