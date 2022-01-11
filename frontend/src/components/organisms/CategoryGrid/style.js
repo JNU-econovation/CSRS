@@ -4,7 +4,7 @@ export const CateogryContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
-  gap: 3px;
+  gap: 5px;
 `;
 
 export const BigItem = styled.div`

@@ -1,11 +1,10 @@
 import styled, { css } from 'styled-components';
 
-import Text from 'components/atoms/Text';
-
-export const LogoText = styled(Text)`
+export const LogoText = styled.p`
   font-size: 6rem;
   font-family: Baskervile;
   cursor: pointer;
+  margin: 0;
   @media screen and (max-height: 750px) {
     font-size: 4rem;
   }
