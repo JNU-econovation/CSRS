@@ -8,11 +8,11 @@ import javax.persistence.*;
 public class Credit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "CREDIT_ID")
     private Long id;
 
     @OneToOne
     @JoinColumn(name = "SUCCESSFUL_BID_ID")
-    @Column(unique = true)
     private SuccessfulBid successfulBid;
 
     @Column(nullable = false)
