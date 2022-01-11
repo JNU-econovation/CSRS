@@ -3,6 +3,7 @@ package com.weart.csrs.service;
 import com.weart.csrs.domain.art.Art;
 import com.weart.csrs.domain.art.ArtRepository;
 import com.weart.csrs.dto.ArtCreateRequestDto;
+import com.weart.csrs.dto.ArtResponeDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +22,10 @@ public class ArtService {
     }
 
     @Transactional
-    public Art selectArt(Long artId) {
-        return artRepository.findById(artId)
+    public ArtResponeDto selectArt(Long artId) {
+        Art art = artRepository.findById(artId)
                 .orElseThrow(() -> new RuntimeException(NOT_FOUND_ART_MESSAGE));
+        return new ArtResponeDto(art);
     }
 
     @Transactional
