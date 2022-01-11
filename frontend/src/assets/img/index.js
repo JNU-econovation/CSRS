@@ -13,7 +13,7 @@ import JEWELRY from './jewelry.png';
 import PAINTING from './painting.png';
 import PHOTO from './photo.png';
 import PRINTS from './prints.png';
-import SCULPTURE from './sculputre.png';
+import SCULPTURE from './sculpture.png';
 import TEXT_TILE from './textile.png';
 import WORK_ON_PAPER from './workonpaper.png';
 
@@ -27,7 +27,7 @@ export const img = {
   LogoOnlyImage
 };
 
-export const CATEGORY_IMG = {
+export const CATEGORY_IMG = [
   COLLAGES,
   GRAPHICDESIGN,
   ILLUSTRATION,
@@ -38,4 +38,4 @@ export const CATEGORY_IMG = {
   SCULPTURE,
   TEXT_TILE,
   WORK_ON_PAPER
-};
+];

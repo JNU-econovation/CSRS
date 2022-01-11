@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import Btn from 'components/atoms/Btn';
 import Img from 'components/atoms/Img';
@@ -14,6 +14,11 @@ export const Button = styled(Btn)`
   width: max(${(props) => props.width || '100%'}, 20px);
   font-size: 0.9em;
   position: relative;
+  ${(props) =>
+    props.category &&
+    css`
+      margin: 0;
+    `}
 `;
 
 export const Image = styled(Img)``;
@@ -27,9 +32,10 @@ export const Category = styled.div`
   align-items: center;
   background: black;
   opacity: 0;
-  font-size: 40px;
+  font-size: 1rem;
   color: white;
   transition: 0.5s;
+  text-align: center;
   &:hover {
     opacity: 0.7;
   }

@@ -6,7 +6,7 @@ import * as Styled from './style';
 function ImgBtn({ category, src, alt, width, ...props }) {
   if (category) {
     return (
-      <Styled.Button {...props}>
+      <Styled.Button {...props} category>
         <Img alt={alt} src={src} />
         <Styled.Category> {category}</Styled.Category>
       </Styled.Button>
