@@ -7,12 +7,12 @@ import javax.persistence.*;
 @Entity
 public class Reliability {
     @Id
+    @Column(name = "RELIABILITY_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne
     @JoinColumn(name = "SUCCESSFUL_BID_ID")
-    @Column(unique = true)
     private SuccessfulBid successfulBid;
 
     @Column(nullable = false)
