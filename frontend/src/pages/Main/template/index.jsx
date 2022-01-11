@@ -13,7 +13,6 @@ function MainTemplate({ categories }) {
           <S.GuideSubTitle>We : ART에 등록되는</S.GuideSubTitle>
           <S.GuideSubTitle>새로운 작품들을 만나보세요</S.GuideSubTitle>
         </S.GuideTextContainer>
-
         {categories}
       </S.CategoryGridContainer>
     </BasedTemplate>

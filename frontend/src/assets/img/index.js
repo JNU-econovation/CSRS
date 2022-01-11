@@ -5,6 +5,7 @@ import NavLike from './NavLike.png';
 import NavSearch from './NavSearch.png';
 import NavShoppingList from './NavShoppingList.png';
 import LogoOnlyImage from './logo_not_text.png';
+import MAIN_ANCHOR from './mainanchorimg.png';
 
 import COLLAGES from './collages.png';
 import GRAPHICDESIGN from './graphicdesign.png';
@@ -24,7 +25,8 @@ export const img = {
   NavLike,
   NavSearch,
   NavShoppingList,
-  LogoOnlyImage
+  LogoOnlyImage,
+  MAIN_ANCHOR
 };
 
 export const CATEGORY_IMG = [

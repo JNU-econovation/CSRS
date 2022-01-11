@@ -12,3 +12,11 @@ export const index = () => (
     </div>
   </div>
 );
+
+export const filter = () => {
+  return (
+    <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)' }}>
+      <Img alt={'이미지'} src={'assets/img/mainanchorimg.png'} />
+    </div>
+  );
+};
