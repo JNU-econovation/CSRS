@@ -26,10 +26,10 @@ public class Art {
     @Column(nullable = false)
     private Long auctionStartPrice;
 
-//    @Column(nullable = false)
+    @Column(nullable = false)
     private LocalDateTime auctionStartDate;
 
-//    @Column(nullable = false)
+    @Column(nullable = false)
     private LocalDateTime auctionEndDate;
 
     @Builder
