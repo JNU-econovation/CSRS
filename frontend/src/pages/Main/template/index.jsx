@@ -2,7 +2,6 @@ import React from 'react';
 
 import BasedTemplate from 'pages/BasedTemplate/templates';
 import * as S from './style';
-import Text from 'components/atoms/Text';
 
 function MainTemplate({ categories }) {
   return (

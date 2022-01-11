@@ -2,43 +2,34 @@ import React from 'react';
 
 import * as S from './style';
 import ImgBtn from 'components/molecules/ImgBtn';
-import { CATEGORY_IMG } from 'assets/img';
 import { CATEGORIES } from 'common/constants/string';
 
 const bigCategoryIdx = [2, 5];
 
 function CategoryGrid() {
   function CategoryList(props) {
-    const images = props.images;
-    const listItems = images.map((image, idx) => {
-      let category = CATEGORIES[idx].toLowerCase().split(' ').join('');
-      if (bigCategoryIdx.includes(idx)) {
-        return (
-          <S.BigItem>
-            <ImgBtn
-              to={`/art/${category}`}
-              key={category}
-              src={image}
-              category={CATEGORIES[idx]}
-            ></ImgBtn>
-          </S.BigItem>
-        );
-      }
-      return (
+    const categories = props.categories;
+    const listItems = categories.map((category, idx) => {
+      const link = category.name.toLowerCase().split(' ').join('');
+      const Btn = (
         <ImgBtn
-          to={`/art/${category}`}
-          key={category}
-          src={image}
-          category={CATEGORIES[idx]}
+          to={`/art/${link}`}
+          key={link}
+          src={category.img}
+          category={category.name}
         ></ImgBtn>
       );
+      if (bigCategoryIdx.includes(idx)) {
+        return <S.BigItem>{Btn}</S.BigItem>;
+      }
+      return Btn;
     });
     return listItems;
   }
 
   return (
     <S.CateogryContainer>
-      <CategoryList images={CATEGORY_IMG}></CategoryList>
+      <CategoryList categories={CATEGORIES}></CategoryList>
     </S.CateogryContainer>
   );
 }

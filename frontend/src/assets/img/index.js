@@ -12,7 +12,7 @@ import GRAPHICDESIGN from './graphicdesign.png';
 import ILLUSTRATION from './illustration.png';
 import JEWELRY from './jewelry.png';
 import PAINTING from './painting.png';
-import PHOTO from './photo.png';
+import PHOTO from './photography.png';
 import PRINTS from './prints.png';
 import SCULPTURE from './sculpture.png';
 import TEXT_TILE from './textile.png';
@@ -29,15 +29,15 @@ export const img = {
   MAIN_ANCHOR
 };
 
-export const CATEGORY_IMG = [
-  COLLAGES,
-  GRAPHICDESIGN,
-  ILLUSTRATION,
-  JEWELRY,
-  PAINTING,
-  PHOTO,
+export const CATEGORY_IMG = {
+  TEXT_TILE,
   PRINTS,
   SCULPTURE,
-  TEXT_TILE,
+  COLLAGES,
+  JEWELRY,
+  PHOTO,
+  GRAPHICDESIGN,
+  PAINTING,
+  ILLUSTRATION,
   WORK_ON_PAPER
-];
+};
