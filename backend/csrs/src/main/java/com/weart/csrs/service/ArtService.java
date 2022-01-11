@@ -38,6 +38,15 @@ public class ArtService {
     }
 
     @Transactional
+    public Long updateArt(Long id, ArtCreateRequestDto artCreateRequestDto) {
+        Art art = artRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_ART_MESSAGE));
+        art.update(artCreateRequestDto);
+
+        return id;
+    }
+
+    @Transactional
     public void deleteArt(Long artId) {
         Art art = artRepository.findById(artId)
                 .orElseThrow(() -> new RuntimeException(NOT_FOUND_ART_MESSAGE));

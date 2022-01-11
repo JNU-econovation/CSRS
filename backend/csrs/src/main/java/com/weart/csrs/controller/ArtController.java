@@ -29,4 +29,16 @@ public class ArtController {
     public List<ArtResponeDto> selectAllArts() {
         return artService.selectAll();
     }
+
+    @PutMapping("api/arts/{artId}")
+    public Long artUpdate(@PathVariable Long artId, @RequestBody ArtCreateRequestDto artCreateRequestDto) {
+        log.info("update art");
+        return artService.updateArt(artId, artCreateRequestDto);
+    }
+
+    @DeleteMapping("api/arts/{artId}")
+    public Long deleteArt(@PathVariable Long artId) {
+        artService.deleteArt(artId);
+        return artId;
+    }
 }

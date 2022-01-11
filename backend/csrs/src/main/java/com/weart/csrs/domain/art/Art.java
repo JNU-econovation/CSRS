@@ -1,5 +1,6 @@
 package com.weart.csrs.domain.art;
 
+import com.weart.csrs.dto.ArtCreateRequestDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,5 +39,13 @@ public class Art {
         this.auctionStartPrice = auctionStartPrice;
         this.auctionStartDate = auctionStartDate;
         this.auctionEndDate = auctionEndDate;
+    }
+
+    public void update(ArtCreateRequestDto artCreateRequestDto) {
+        this.title = artCreateRequestDto.getTitle();
+        this.content = artCreateRequestDto.getContent();
+        this.auctionStartPrice = artCreateRequestDto.getAuctionStartPrice();
+        this.auctionStartDate = artCreateRequestDto.getAuctionStartDate();
+        this.auctionEndDate = artCreateRequestDto.getAuctionEndDate();
     }
 }
