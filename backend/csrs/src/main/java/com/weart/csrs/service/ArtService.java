@@ -19,14 +19,14 @@ public class ArtService {
 
     @Transactional
     public Long createArt(ArtCreateRequestDto artCreateRequestDto) {
-        Art createdArt = artRepository.save(artCreateRequestDto.toArt());
-        return createdArt.getId();
+        Art art = artRepository.save(artCreateRequestDto.toArt());
+        return art.getId();
     }
 
     @Transactional
     public ArtResponeDto selectArt(Long artId) {
         Art art = artRepository.findById(artId)
-                .orElseThrow(() -> new RuntimeException(NOT_FOUND_ART_MESSAGE));
+                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_ART_MESSAGE));
         return new ArtResponeDto(art);
     }
 
@@ -49,7 +49,17 @@ public class ArtService {
     @Transactional
     public void deleteArt(Long artId) {
         Art art = artRepository.findById(artId)
-                .orElseThrow(() -> new RuntimeException(NOT_FOUND_ART_MESSAGE));
+                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_ART_MESSAGE));
         artRepository.delete(art);
+    }
+
+    @Transactional
+    public List<ArtResponeDto> selectArtByTile(String title) {
+        List<Art> arts = artRepository.findByTitle(title);
+        List<ArtResponeDto> searchArts = arts.stream().map(ArtResponeDto::new).collect(Collectors.toList());
+        if (searchArts.isEmpty()) {
+            throw new IllegalArgumentException(NOT_FOUND_ART_MESSAGE);
+        }
+        return searchArts;
     }
 }

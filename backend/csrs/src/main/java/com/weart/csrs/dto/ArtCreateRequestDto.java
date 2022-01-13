@@ -1,6 +1,5 @@
 package com.weart.csrs.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.weart.csrs.domain.art.Art;
 import lombok.Builder;
 import lombok.Getter;

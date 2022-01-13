@@ -15,7 +15,7 @@ import java.util.List;
 public class ArtController {
     private final ArtService artService;
 
-    @PostMapping("api/art/save")
+    @PostMapping("api/art")
     public Long artSave(@RequestBody ArtCreateRequestDto artCreateRequestDto) {
         return artService.createArt(artCreateRequestDto);
     }
@@ -32,7 +32,6 @@ public class ArtController {
 
     @PutMapping("api/arts/{artId}")
     public Long artUpdate(@PathVariable Long artId, @RequestBody ArtCreateRequestDto artCreateRequestDto) {
-        log.info("update art");
         return artService.updateArt(artId, artCreateRequestDto);
     }
 
@@ -40,5 +39,10 @@ public class ArtController {
     public Long deleteArt(@PathVariable Long artId) {
         artService.deleteArt(artId);
         return artId;
+    }
+
+    @GetMapping("api/artnames/{artName}")
+    public List<ArtResponeDto> searchByName(@PathVariable String artName) {
+        return artService.selectArtByTile(artName);
     }
 }
