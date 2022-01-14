@@ -1,7 +1,7 @@
 package repository;
 
-import com.weart.csrs.Repository.MEMBERRepository;
-import com.weart.csrs.domain.MEMBER.MEMBER;
+import com.weart.csrs.domain.member.MemberRepository;
+import com.weart.csrs.domain.member.Member;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,14 +16,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(classes = SpringRunner.class)
 @RunWith(SpringRunner.class)
-public class MEMBERRepositoryTest{
+public class MemberRepositoryTest {
 
     @Autowired(required = false)
-    MEMBERRepository memberRepository;
+    MemberRepository memberRepository;
 
     @Test
     public void create(){
-        MEMBER member = new MEMBER();
+        Member member = new Member();
 
         member.getEmail();
     }
@@ -39,17 +39,17 @@ public class MEMBERRepositoryTest{
         String name = "서현";
         String email = "ymecca12@gmail.com";
 
-        memberRepository.save(MEMBER.builder()
+        memberRepository.save(Member.builder()
                 .name(name)
                 .email(email)
                 .build()
         );
 
         //when
-        List<MEMBER> memberList = memberRepository.findAll();
+        List<Member> memberList = memberRepository.findAll();
 
         //then
-        MEMBER member = memberList.get(0);
+        Member member = memberList.get(0);
         assertThat(member.getName()).isEqualTo(name);
         assertThat(member.getEmail()).isEqualTo(email);
         System.out.println("불러기오 Test Success");

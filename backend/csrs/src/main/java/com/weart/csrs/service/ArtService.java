@@ -2,8 +2,8 @@ package com.weart.csrs.service;
 
 import com.weart.csrs.domain.art.Art;
 import com.weart.csrs.domain.art.ArtRepository;
-import com.weart.csrs.dto.ArtCreateRequestDto;
-import com.weart.csrs.dto.ArtResponeDto;
+import com.weart.csrs.web.dto.ArtCreateRequestDto;
+import com.weart.csrs.web.dto.ArtResponeDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

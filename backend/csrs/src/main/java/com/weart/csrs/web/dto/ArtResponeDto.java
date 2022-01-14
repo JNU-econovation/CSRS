@@ -1,4 +1,4 @@
-package com.weart.csrs.dto;
+package com.weart.csrs.web.dto;
 
 import com.weart.csrs.domain.art.Art;
 import lombok.Getter;

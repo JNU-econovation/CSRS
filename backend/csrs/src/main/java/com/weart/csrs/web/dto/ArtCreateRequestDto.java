@@ -1,4 +1,4 @@
-package com.weart.csrs.dto;
+package com.weart.csrs.web.dto;
 
 import com.weart.csrs.domain.art.Art;
 import lombok.Builder;
@@ -23,9 +23,9 @@ public class ArtCreateRequestDto {
         this.content = content;
         this.auctionStartPrice = auctionStartPrice;
         int[] startDateInfos = parsingDate(auctionStartDate);
-        this.auctionStartDate = LocalDateTime.of(startDateInfos[0],startDateInfos[1],startDateInfos[2],startDateInfos[3],startDateInfos[4]);
+        this.auctionStartDate = LocalDateTime.of(startDateInfos[0], startDateInfos[1], startDateInfos[2], startDateInfos[3], startDateInfos[4]);
         int[] endDateInfos = parsingDate(auctionEndDate);
-        this.auctionEndDate = LocalDateTime.of(endDateInfos[0],endDateInfos[1],endDateInfos[2],endDateInfos[3],endDateInfos[4]);
+        this.auctionEndDate = LocalDateTime.of(endDateInfos[0], endDateInfos[1], endDateInfos[2], endDateInfos[3], endDateInfos[4]);
     }
 
     public int[] parsingDate(String auctionDate) {

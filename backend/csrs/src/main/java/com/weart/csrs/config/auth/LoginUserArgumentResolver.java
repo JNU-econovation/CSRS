@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 @Component
 public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver {
     private final HttpSession httpSession;
+
     //컨트롤러의 메서드의 특정 파라미터를 지원하는지 확인
     @Override
     public boolean supportsParameter(MethodParameter parameter) {

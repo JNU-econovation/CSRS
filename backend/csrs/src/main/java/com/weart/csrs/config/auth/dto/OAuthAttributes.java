@@ -1,8 +1,8 @@
 package com.weart.csrs.config.auth.dto;
 
 
-import com.weart.csrs.domain.MEMBER.MEMBER;
-import com.weart.csrs.service.Role;
+import com.weart.csrs.domain.member.Member;
+import com.weart.csrs.domain.member.Role;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -24,7 +24,7 @@ public class OAuthAttributes {
     }
 
     public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String, Object> attributes) {
-        if("naver".equals(registrationId)) {
+        if ("naver".equals(registrationId)) {
             return ofNaver("id", attributes);
         }
 
@@ -51,8 +51,8 @@ public class OAuthAttributes {
     }
 
 
-    public MEMBER toEntity() {
-        return MEMBER.builder()
+    public Member toEntity() {
+        return Member.builder()
                 .name(name)
                 .email(email)
                 .role(Role.GUEST)

@@ -1,4 +1,4 @@
-package com.weart.csrs.service;
+package com.weart.csrs.domain.member;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

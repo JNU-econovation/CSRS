@@ -1,19 +1,21 @@
 package com.weart.csrs.config;
 
-import com.weart.csrs.Repository.MEMBERRepository;
-import com.weart.csrs.service.MEMBERService;
+import com.weart.csrs.domain.member.MemberRepository;
+import com.weart.csrs.service.MemberService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SpringConfig {
 
-    private final MEMBERRepository memberRepository;
-    public SpringConfig(MEMBERRepository memberRepository) {
+    private final MemberRepository memberRepository;
+
+    public SpringConfig(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
+
     @Bean
-    public MEMBERService memberService() {
-        return new MEMBERService(memberRepository);
+    public MemberService memberService() {
+        return new MemberService(memberRepository);
     }
 }

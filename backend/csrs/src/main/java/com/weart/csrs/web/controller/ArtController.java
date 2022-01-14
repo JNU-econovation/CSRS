@@ -1,8 +1,8 @@
-package com.weart.csrs.Controller;
+package com.weart.csrs.web.controller;
 
-import com.weart.csrs.dto.ArtCreateRequestDto;
-import com.weart.csrs.dto.ArtResponeDto;
 import com.weart.csrs.service.ArtService;
+import com.weart.csrs.web.dto.ArtCreateRequestDto;
+import com.weart.csrs.web.dto.ArtResponeDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;

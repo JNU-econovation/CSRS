@@ -1,7 +1,8 @@
 package com.weart.csrs.service;
 
-import com.weart.csrs.Repository.MEMBERRepository;
-import com.weart.csrs.domain.MEMBER.MEMBER;
+import com.weart.csrs.domain.member.Member;
+import com.weart.csrs.domain.member.MemberRepository;
+import com.weart.csrs.domain.member.Role;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,23 +16,24 @@ import java.util.Optional;
 @Transactional
 @Getter
 @Service
-public class MEMBERService {
+public class MemberService {
 
-    private final MEMBERRepository memberRepository;
+    private final MemberRepository memberRepository;
 
-    public List<MEMBER> getByName(String name) throws Exception {
+    public List<Member> getByName(String name) throws Exception {
         return memberRepository.findByName(name);
     }
-    public Optional<MEMBER> getByEmail(String email) throws Exception {
+
+    public Optional<Member> getByEmail(String email) throws Exception {
         return memberRepository.findByEmail(email);
     }
 
     @Autowired
-    public MEMBERService(MEMBERRepository memberRepository) {
+    public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
 
-    public void createMember(MEMBER member) {
+    public void createMember(Member member) {
         member.setEmail(member.getEmail());
         member.setName(member.getName());
         member.setRole(Role.valueOf("USER"));
@@ -47,8 +49,8 @@ public class MEMBERService {
 //                });
 //    }
 
-    @RequestMapping(value="/login.do",method= RequestMethod.POST)
-    public String loginMember(MEMBER member){
+    @RequestMapping(value = "/login.do", method = RequestMethod.POST)
+    public String loginMember(Member member) {
         System.out.println("member : " + member);
         return "main";
     }

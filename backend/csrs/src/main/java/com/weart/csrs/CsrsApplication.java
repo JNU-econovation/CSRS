@@ -11,8 +11,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 public class CsrsApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CsrsApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(CsrsApplication.class, args);
+    }
 
 }

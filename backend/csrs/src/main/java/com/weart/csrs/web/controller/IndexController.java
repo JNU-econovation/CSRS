@@ -1,4 +1,4 @@
-package com.weart.csrs.Controller;
+package com.weart.csrs.web.controller;
 
 import com.weart.csrs.config.auth.dto.SessionUser;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ public class IndexController {
     @GetMapping("/")
     public String index(Model model) {
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
-        if(user!=null){
+        if (user != null) {
             model.addAttribute("userName", user.getName());
         }
         return "index";

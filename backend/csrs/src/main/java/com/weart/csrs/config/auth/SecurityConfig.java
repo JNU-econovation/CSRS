@@ -24,26 +24,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    public void configure(HttpSecurity http) throws Exception{
+    public void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.headers().frameOptions().disable()
-    //                .and()
-    //                    .authorizeHttpRequests()
-    //                    .antMatchers("/", "/css/**", "/images/**",
-    //                            "/js/**", "/h2-console/**").permitAll()
-    //                    .antMatchers("/api/v1/**").hasRole(Role.USER.name())
-    //                    .anyRequest().authenticated()
-            .and()
+                //                .and()
+                //                    .authorizeHttpRequests()
+                //                    .antMatchers("/", "/css/**", "/images/**",
+                //                            "/js/**", "/h2-console/**").permitAll()
+                //                    .antMatchers("/api/v1/**").hasRole(Role.USER.name())
+                //                    .anyRequest().authenticated()
+                .and()
                 .logout()
-                    .logoutSuccessUrl("/")
-            .and()
-            .authorizeRequests()
-            .antMatchers("/h2-console/**")
-            .permitAll()
-            .and()
+                .logoutSuccessUrl("/")
+                .and()
+                .authorizeRequests()
+                .antMatchers("/h2-console/**")
+                .permitAll()
+                .and()
                 .oauth2Login()
-                    .userInfoEndpoint()
-                        .userService(customUserTypesOAuth2UserService);
+                .userInfoEndpoint()
+                .userService(customUserTypesOAuth2UserService);
         http.csrf().disable()
                 // 시큐리티는 기본적으로 세션을 사용
                 // 여기서는 세션을 사용하지 않기 때문에 세션 설정을 Stateless 로 설정

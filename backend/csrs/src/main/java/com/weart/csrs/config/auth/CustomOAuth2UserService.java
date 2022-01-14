@@ -1,9 +1,9 @@
 package com.weart.csrs.config.auth;
 
-import com.weart.csrs.Repository.MEMBERRepository;
 import com.weart.csrs.config.auth.dto.OAuthAttributes;
 import com.weart.csrs.config.auth.dto.SessionUser;
-import com.weart.csrs.domain.MEMBER.MEMBER;
+import com.weart.csrs.domain.member.Member;
+import com.weart.csrs.domain.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -20,7 +20,7 @@ import java.util.Collections;
 @RequiredArgsConstructor
 @Service
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
-    private final MEMBERRepository memberRepository;
+    private final MemberRepository memberRepository;
     private final HttpSession httpSession;
 
     @Override
@@ -34,7 +34,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
         OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName, oAuth2User.getAttributes());
 
-        MEMBER member = saveOrUpdate(attributes);
+        Member member = saveOrUpdate(attributes);
         httpSession.setAttribute("user", new SessionUser(member));
 
         return new DefaultOAuth2User(
@@ -44,9 +44,9 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
     }
 
 
-    private MEMBER saveOrUpdate(OAuthAttributes attributes) {
-        MEMBER member = memberRepository.findByEmail(attributes.getEmail())
-                .map(entity -> entity.update(attributes.getName(), attributes.getEmail(),attributes.toEntity().getRole()))
+    private Member saveOrUpdate(OAuthAttributes attributes) {
+        Member member = memberRepository.findByEmail(attributes.getEmail())
+                .map(entity -> entity.update(attributes.getName(), attributes.getEmail(), attributes.toEntity().getRole()))
                 .orElse(attributes.toEntity());
         return memberRepository.save(member);
     }

@@ -1,6 +1,6 @@
 package com.weart.csrs.domain.art;
 
-import com.weart.csrs.dto.ArtCreateRequestDto;
+import com.weart.csrs.web.dto.ArtCreateRequestDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
