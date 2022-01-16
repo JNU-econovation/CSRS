@@ -15,8 +15,22 @@ export const index = () => (
 
 export const filter = () => {
   return (
-    <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)' }}>
-      <Img alt={'이미지'} src={'assets/img/mainanchorimg.png'} />
+    <div>
+      <Img
+        filter={'brightness(0.3)'}
+        alt={'이미지'}
+        src={'assets/img/mainanchorimg.png'}
+      />
+    </div>
+  );
+};
+
+export const icon = () => {
+  return (
+    <div>
+      <i className="fi fi-rr-Arrow-right"></i>
+      <i className="fas fa-arrow-right"></i>
+      <i className="fi fi-ro-arrow-right"></i>
     </div>
   );
 };

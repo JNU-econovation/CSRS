@@ -13,6 +13,7 @@ export const imageBtn = () => {
       <ImgBtn alt={'등록'} src={'/assets/img/NavShoppingList.png'}></ImgBtn>
       <ImgBtn alt={'등록'} src={'/assets/img/NavLike.png'}></ImgBtn>
       <ImgBtn alt={'등록'} src={'/assets/img/NavAlarm.png'}></ImgBtn>
+      <ImgBtn alt={'등록'} src={'/assets/img/arrow-right.svg'}></ImgBtn>
     </div>
   );
 };
