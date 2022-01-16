@@ -1,11 +1,12 @@
 package com.weart.csrs.domain.credit;
 
+import com.weart.csrs.domain.BaseTimeEntity;
 import com.weart.csrs.domain.successfulbid.SuccessfulBid;
 
 import javax.persistence.*;
 
 @Entity
-public class Credit {
+public class Credit extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CREDIT_ID")

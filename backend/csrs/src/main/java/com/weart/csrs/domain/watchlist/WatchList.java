@@ -1,12 +1,13 @@
 package com.weart.csrs.domain.watchlist;
 
+import com.weart.csrs.domain.BaseTimeEntity;
 import com.weart.csrs.domain.art.Art;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class WatchList {
+public class WatchList extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "WATCH_LIST_ID")

@@ -1,12 +1,13 @@
 package com.weart.csrs.domain.successfulbid;
 
+import com.weart.csrs.domain.BaseTimeEntity;
 import com.weart.csrs.domain.bid.Bid;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-public class SuccessfulBid {
+public class SuccessfulBid extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "SUCCESSFUL_BID_ID")

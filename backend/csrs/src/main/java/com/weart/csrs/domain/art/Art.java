@@ -1,5 +1,7 @@
 package com.weart.csrs.domain.art;
 
+import com.weart.csrs.domain.BaseTimeEntity;
+import com.weart.csrs.domain.member.Member;
 import com.weart.csrs.web.dto.ArtCreateRequestDto;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,11 +13,15 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Art {
+public class Art extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ART_ID")
     private Long id;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
 
     @Column(length = 100, nullable = false)
     private String title;
@@ -33,7 +39,7 @@ public class Art {
     private LocalDateTime auctionEndDate;
 
     @Builder
-    public Art(String title, String content, Long auctionStartPrice, LocalDateTime auctionStartDate, LocalDateTime auctionEndDate) {
+    public Art(String title, Long memberId, String content, Long auctionStartPrice, LocalDateTime auctionStartDate, LocalDateTime auctionEndDate) {
         this.title = title;
         this.content = content;
         this.auctionStartPrice = auctionStartPrice;

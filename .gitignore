@@ -38,3 +38,4 @@ out/
 
 ### Setting ###
 application-oauth.properties
+.DS_Store

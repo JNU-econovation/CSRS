@@ -2,11 +2,14 @@ package com.weart.csrs.config.auth;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+
+//import static org.springframework.security.config.annotation.web.AbstractRequestMatcherRegistry.RequestMatchers.antMatchers;
 
 
 @RequiredArgsConstructor
@@ -38,8 +41,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/")
                 .and()
                 .authorizeRequests()
-                .antMatchers("/h2-console/**")
-                .permitAll()
+                /*.antMatchers("/h2-console/**")*/
+                //.permitAll()
                 .and()
                 .oauth2Login()
                 .userInfoEndpoint()
@@ -61,7 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", "/auth/**").permitAll();
     }
-//
+
 //    @Override
 //    public void configure(HttpSecurity http) throws Exception {
 //        http.csrf().disable()
@@ -80,8 +83,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                // 로그인, 회원가입 API 는 토큰이 없는 상태에서 요청이 들어오기 때문에 permitAll 설정
 //                .and()
 //                .authorizeRequests()
-//                .antMatchers("/", "/auth/**").permitAll();
-//
+//                .antMatchers("/", "/auth/**").permitAll()
 //                    .antMatchers("/member/list", "/restaurant/list", "/title/**", "/theme/**", "/special/**").hasRole("ADMIN")
 //                    .antMatchers(HttpMethod.POST, "/notice", "/restaurant").hasRole("ADMIN")
 //                    .antMatchers(HttpMethod.PUT, "/notice/{\\d+}", "/restaurant/{\\d+}").hasRole("ADMIN")
@@ -98,6 +100,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                // JwtFilter 를 addFilterBefore 로 등록했던 JwtSecurityConfig 클래스를 적용
 //                .and()
 //                .apply(new AppTokenSecurityConfig(appTokenProvider));
-//    }
-}
+    }
+
 
