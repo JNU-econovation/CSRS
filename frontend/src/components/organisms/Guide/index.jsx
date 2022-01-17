@@ -1,7 +1,7 @@
 import React from 'react';
 
 import * as S from './style';
-import img from 'assets/img';
+import { img } from 'assets/img';
 import LogoText from 'components/molecules/LogoText';
 
 function Guide() {

@@ -9,7 +9,7 @@ export default {
 export const anchor = () => {
   return (
     <>
-      <Btn children={text('Content', '로그인')} to={'/'}></Btn>
+      <Btn children={text('Content', '로그인')}></Btn>
     </>
   );
 };

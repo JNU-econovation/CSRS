@@ -1,5 +1,4 @@
 import React from 'react';
-import { boolean } from '@storybook/addon-knobs';
 import ImgBtn from '.';
 
 export default {
@@ -14,6 +13,7 @@ export const imageBtn = () => {
       <ImgBtn alt={'등록'} src={'/assets/img/NavShoppingList.png'}></ImgBtn>
       <ImgBtn alt={'등록'} src={'/assets/img/NavLike.png'}></ImgBtn>
       <ImgBtn alt={'등록'} src={'/assets/img/NavAlarm.png'}></ImgBtn>
+      <ImgBtn alt={'등록'} src={'/assets/img/arrow-right.svg'}></ImgBtn>
     </div>
   );
 };
@@ -21,5 +21,16 @@ export const imageBtn = () => {
 export const logo = () => {
   return (
     <ImgBtn alt={'로고'} width={'5em'} src={'/assets/img/logo.png'}></ImgBtn>
+  );
+};
+
+export const category = () => {
+  return (
+    <ImgBtn
+      category={'logo'}
+      alt={'로고'}
+      width={'5em'}
+      src={'/assets/img/logo.png'}
+    ></ImgBtn>
   );
 };

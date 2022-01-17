@@ -1,7 +1,7 @@
 import React from 'react';
 import ImgBtn from 'components/molecules/ImgBtn';
 import NavBarButton from 'components/molecules/NavBarButton';
-import img from 'assets/img';
+import { img } from 'assets/img';
 import * as Styled from './style';
 
 export default function NavBar() {
