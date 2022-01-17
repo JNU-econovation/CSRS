@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 
 @Controller
-@ComponentScan({"com.weart.csrs.service.MEMBERService"})
 public class MemberController {
 
     @Autowired  //스프링컨테이너에있는 memberService 를 가져와 연결.

@@ -1,12 +1,17 @@
 package com.weart.csrs.domain.bid;
 
+import com.weart.csrs.domain.CreateTimeEntity;
 import com.weart.csrs.domain.art.Art;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
 
+@Getter
+@NoArgsConstructor
 @Entity
-public class Bid {
+public class Bid extends CreateTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "BID_ID")
@@ -19,7 +24,9 @@ public class Bid {
     @Column(nullable = false)
     private Long bidPrice;
 
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date bidDate;
+    @Builder
+    public Bid(Art art, Long bidPrice) {
+        this.art = art;
+        this.bidPrice = bidPrice;
+    }
 }

@@ -3,8 +3,12 @@ package com.weart.csrs.web.controller;
 import com.weart.csrs.service.ArtService;
 import com.weart.csrs.web.dto.ArtCreateRequestDto;
 import com.weart.csrs.web.dto.ArtResponeDto;
+import com.weart.csrs.web.dto.ArtWithPaginationDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,9 +29,9 @@ public class ArtController {
         return artService.selectArt(artId);
     }
 
-    @GetMapping("api/arts/list")
-    public List<ArtResponeDto> selectAllArts() {
-        return artService.selectAll();
+    @GetMapping("api/arts")
+    public ArtWithPaginationDto selectAllArts(@PageableDefault(size = 21, sort = "createdDate", direction = Sort.Direction.DESC) Pageable pageable) {
+        return artService.selectAllWithPagination(pageable);
     }
 
     @PutMapping("api/arts/{artId}")
