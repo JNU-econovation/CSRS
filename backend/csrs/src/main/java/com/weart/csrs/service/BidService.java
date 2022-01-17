@@ -5,10 +5,13 @@ import com.weart.csrs.domain.art.ArtRepository;
 import com.weart.csrs.domain.bid.Bid;
 import com.weart.csrs.domain.bid.BidRepository;
 import com.weart.csrs.web.dto.BidCreateRequestDto;
+import com.weart.csrs.web.dto.BidResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -22,10 +25,25 @@ public class BidService {
     public Long createBid(Long artId, BidCreateRequestDto bidCreateRequestDto) {
         Art art = artRepository.findById(artId).orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_ART_MESSAGE));
         Long maxBidPrice = bidRepository.findMaxBidPrice(artId);
-        if (maxBidPrice!=null && maxBidPrice >= bidCreateRequestDto.getBidPrice()) {
+        if (maxBidPrice != null && maxBidPrice >= bidCreateRequestDto.getBidPrice()) {
             throw new IllegalArgumentException(INVALIDATE_BID_PRICE);
         }
         Bid bid = bidRepository.save(bidCreateRequestDto.toBid(art, bidCreateRequestDto.getBidPrice()));
         return bid.getId();
     }
+
+    @Transactional
+    public Long selectBidCount(Long artId) {
+        Art art = artRepository.findById(artId).orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_ART_MESSAGE));
+        return bidRepository.findCountBidMember(art.getId());
+    }
+
+    @Transactional
+    public List<BidResponseDto> selectBidList(Long artId) {
+        Art art = artRepository.findById(artId).orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_ART_MESSAGE));
+        return bidRepository.findBidByArtId(art.getId()).stream()
+                .map(BidResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
 }
