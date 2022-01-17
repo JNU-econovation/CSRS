@@ -4,7 +4,10 @@ import com.weart.csrs.domain.art.Art;
 import com.weart.csrs.domain.art.ArtRepository;
 import com.weart.csrs.web.dto.ArtCreateRequestDto;
 import com.weart.csrs.web.dto.ArtResponeDto;
+import com.weart.csrs.web.dto.ArtWithPaginationDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -31,10 +34,13 @@ public class ArtService {
     }
 
     @Transactional
-    public List<ArtResponeDto> selectAll() {
-        return artRepository.findAll().stream()
+    public ArtWithPaginationDto selectAllWithPagination(Pageable pageable) {
+        Page<Art> all = artRepository.findAll(pageable);
+        List<ArtResponeDto> artResponeDtos = all.getContent().stream()
                 .map(ArtResponeDto::new)
                 .collect(Collectors.toList());
+        int totalPage = all.getTotalPages();
+        return new ArtWithPaginationDto(artResponeDtos, totalPage);
     }
 
     @Transactional

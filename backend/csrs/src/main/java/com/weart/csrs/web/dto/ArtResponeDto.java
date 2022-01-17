@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 
 @Getter
 public class ArtResponeDto {
+    private Long id;
     private String title;
     private String content;
     private Long auctionStartPrice;
@@ -14,6 +15,7 @@ public class ArtResponeDto {
     private LocalDateTime auctionEndDate;
 
     public ArtResponeDto(Art art) {
+        this.id = art.getId();
         this.title = art.getTitle();
         this.content = art.getContent();
         this.auctionStartPrice = art.getAuctionStartPrice();
