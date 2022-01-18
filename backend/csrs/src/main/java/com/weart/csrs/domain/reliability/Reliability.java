@@ -30,7 +30,7 @@ public class Reliability {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "MEMBER_ID", referencedColumnName = "MEMBER_ID")
     public Member member;
 

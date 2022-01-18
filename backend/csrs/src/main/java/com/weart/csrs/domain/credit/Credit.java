@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -21,7 +22,7 @@ public class Credit {
     @Column(name = "CREDIT_ID")
     private Long id;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "MEMBER_ID", referencedColumnName = "MEMBER_ID")
     public Member member;
 
@@ -39,11 +40,9 @@ public class Credit {
         this.successfulBid = successfulBid;
         this.balance = balance;
     }
-
-    public Credit update(Member member,SuccessfulBid successfulBid, Long balance) {
-        this.member = member;
-        this.successfulBid = successfulBid;
-        this.balance = balance;
-        return this;
+    public void update(Credit credit) {
+        this.member = credit.member;
+        this.successfulBid = credit.successfulBid;
+        this.balance = credit.balance;
     }
 }

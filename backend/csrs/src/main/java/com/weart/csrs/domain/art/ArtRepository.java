@@ -11,8 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
 public interface ArtRepository extends JpaRepository<Art, Long> {
     @Query("SELECT a FROM Art a where a.title = :titleValue ")
-    List<Member> findByTitle(@Param("titleValue") String titleValue);
+    List<Art> findByTitle(@Param("titleValue") String titleValue);
 }

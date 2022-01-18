@@ -1,9 +1,13 @@
 package com.weart.csrs.web.controller;
 
+import com.weart.csrs.service.CreditService;
+import com.weart.csrs.domain.credit.Credit;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,18 +16,23 @@ import org.springframework.web.bind.annotation.RestController;
 public class CreditController {
     private final CreditService creditService;
 
+    //멤버의 Credit생성해주기
     @PostMapping("api/credit/{creditId}")
-    public Long createBid(@PathVariable Long memberId, @RequestBody Credit credit) {
-        return creditService.createCredit(memberId, credit);
+    public Credit createCredit(@PathVariable Long memberid, @RequestBody Credit credit) {
+        return creditService.createCredit(memberid, credit);
     }
 
-    @GetMapping("api/credit/{creditId}/bid")
-    public Long selectBidCount(@PathVariable Long artId) {
-        return creditService.selectBidCount(artId);
+
+    //update
+    @PutMapping("api/credit/{memberId}")
+    public Long creditUpdate(@PathVariable Long memberId, @RequestBody Credit credit) {
+        return creditService.updateCredit(memberId, credit);
     }
 
-    @GetMapping("api/credit/{artId}/bids")
-    public List<BidResponseDto> selectArtBid(@PathVariable Long artId) {
-        return creditService.selectBidList(artId);
+
+    // 조회
+    @GetMapping("api/credit/{memberId}")
+    public Credit selectCredit(@PathVariable Long memberId) {
+        return creditService.selectCredit(memberId);
     }
 }

@@ -33,7 +33,7 @@ public class WatchList {
     @JoinColumn(name = "ART_ID")
     private Art art;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
