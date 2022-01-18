@@ -1,10 +1,12 @@
 package com.weart.csrs.web.controller;
 
-import com.weart.csrs.domain.bid.Bid;
 import com.weart.csrs.service.BidService;
 import com.weart.csrs.web.dto.BidCreateRequestDto;
 import com.weart.csrs.web.dto.BidResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,7 +27,7 @@ public class BidController {
     }
 
     @GetMapping("api/arts/{artId}/bids")
-    public List<BidResponseDto> selectArtBid(@PathVariable Long artId) {
-        return bidService.selectBidList(artId);
+    public List<BidResponseDto> selectArtBid(@PathVariable Long artId, @PageableDefault(size = 4, sort = "bidPrice", direction = Sort.Direction.DESC) Pageable pageable) {
+        return bidService.selectBidList(artId, pageable);
     }
 }
