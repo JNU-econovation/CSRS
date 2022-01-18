@@ -1,13 +1,24 @@
 package com.weart.csrs.domain.successfulbid;
 
-import com.weart.csrs.domain.BaseTimeEntity;
 import com.weart.csrs.domain.bid.Bid;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
-public class SuccessfulBid extends BaseTimeEntity {
+public class SuccessfulBid {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "SUCCESSFUL_BID_ID")

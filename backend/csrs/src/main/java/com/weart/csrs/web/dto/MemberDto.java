@@ -1,7 +1,7 @@
 package com.weart.csrs.web.dto;
 
 import com.weart.csrs.domain.member.Member;
-import com.weart.csrs.domain.member.Role;
+import com.weart.csrs.domain.member.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class MemberDto {
-    private int id;
+    private Long id;
     private String name;
     private String email;
     private Role role;
@@ -27,7 +27,7 @@ public class MemberDto {
     }
 
     @Builder
-    public MemberDto(int id, String name, String email) {
+    public MemberDto(Long id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;
