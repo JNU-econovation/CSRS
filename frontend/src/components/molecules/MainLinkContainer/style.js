@@ -54,7 +54,4 @@ export const Title = styled(Text)`
 export const SubTitle = styled(Text)`
   color: white;
   font-size: 0.7rem;
-  @media screen and (max-width: 1000px) {
-    font-size: 0.7rem;
-  }
 `;
