@@ -7,8 +7,7 @@ import { CATEGORIES } from 'common/constants/string';
 const bigCategoryIdx = [2, 5];
 
 function CategoryGrid() {
-  function CategoryList(props) {
-    const categories = props.categories;
+  function CategoryList({categories}) {
     const listItems = categories.map((category, idx) => {
       const link = category.name.toLowerCase().split(' ').join('');
       const Btn = (
