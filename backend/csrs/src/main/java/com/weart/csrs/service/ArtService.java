@@ -47,6 +47,9 @@ public class ArtService {
     public Long updateArt(Long id, ArtCreateRequestDto artCreateRequestDto) {
         Art art = artRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_ART_MESSAGE));
+        if (art.checkBidTime()) {
+            throw new IllegalArgumentException("수정할 수 없음");
+        }
         art.update(artCreateRequestDto);
 
         return id;
