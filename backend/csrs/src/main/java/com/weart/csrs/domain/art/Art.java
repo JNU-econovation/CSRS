@@ -42,6 +42,9 @@ public class Art extends BaseTimeEntity {
     @Transient
     private Boolean isStartBid;
 
+    @Transient
+    private Boolean isEndBid;
+
     @Builder
     public Art(String title, Long memberId, String content, Long auctionStartPrice, LocalDateTime auctionStartDate, LocalDateTime auctionEndDate) {
         this.title = title;
@@ -66,5 +69,14 @@ public class Art extends BaseTimeEntity {
             isStartBid = true;
         }
         return isStartBid;
+    }
+
+    public Boolean checkBidEndTime() {
+        isEndBid = true;
+        LocalDateTime currentTime = LocalDateTime.now();
+        if (currentTime.isBefore(auctionEndDate)) {
+            isEndBid = false;
+        }
+        return isEndBid;
     }
 }

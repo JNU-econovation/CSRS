@@ -29,6 +29,9 @@ public class BidService {
         if (maxBidPrice != null && maxBidPrice >= bidCreateRequestDto.getBidPrice()) {
             throw new IllegalArgumentException(INVALIDATE_BID_PRICE);
         }
+        if(art.checkBidEndTime()){
+            throw new IllegalArgumentException("입찰할 수 없음");
+        }
         Bid bid = bidRepository.save(bidCreateRequestDto.toBid(art, bidCreateRequestDto.getBidPrice()));
         return bid.getId();
     }
