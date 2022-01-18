@@ -1,6 +1,8 @@
 package com.weart.csrs.domain.bid;
 
+
 import com.weart.csrs.domain.bid.Bid;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -15,5 +17,5 @@ public interface BidRepository extends JpaRepository<Bid, Long> {
     Long findCountBidMember(@Param("artId") Long artId);
 
     @Query("SELECT b FROM Bid b where b.art.id = :artId order by b.bidPrice desc")
-    List<Bid> findBidByArtId(@Param("artId") Long artId);
+    List<Bid> findBidByArtId(@Param("artId") Long artId, Pageable pageable);
 }
