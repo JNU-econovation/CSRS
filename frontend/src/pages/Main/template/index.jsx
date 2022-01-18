@@ -3,7 +3,7 @@ import React from 'react';
 import BasedTemplate from 'pages/BasedTemplate/templates';
 import * as S from './style';
 
-function MainTemplate({ categories }) {
+function MainTemplate({ categories, links }) {
   return (
     <BasedTemplate>
       <S.CategoryGridContainer>
@@ -14,6 +14,7 @@ function MainTemplate({ categories }) {
         </S.GuideTextContainer>
         {categories}
       </S.CategoryGridContainer>
+      <S.LinkContainer>{links}</S.LinkContainer>
     </BasedTemplate>
   );
 }

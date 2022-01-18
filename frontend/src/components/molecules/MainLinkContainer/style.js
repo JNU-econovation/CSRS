@@ -14,11 +14,25 @@ export const Button = styled(Btn)`
   width: max(${(props) => props.width || '100%'}, 20px);
   font-size: 0.9em;
   position: relative;
+  @media screen and (max-width: 768px) {
+    font-size: 0.6em;
+  }
+`;
+
+export const RectangleContainer = styled.div`
+  width: 33%;
+  position: relative;
+  :after {
+    content: '';
+    display: block;
+    padding-bottom: 100%;
+  }
 `;
 
 export const BlackContainer = styled.div`
-  width: 20rem;
-  height: 20rem;
+  position: absolute;
+  width: 100%;
+  height: 100%;
   background-color: #5b5b5b;
   display: flex;
   padding: 33px;
@@ -28,13 +42,19 @@ export const BlackContainer = styled.div`
 `;
 
 export const Title = styled(Text)`
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: white;
   text-align: right;
   margin: 0.3em;
+  @media screen and (max-width: 1000px) {
+    font-size: 1rem;
+  }
 `;
 
 export const SubTitle = styled(Text)`
   color: white;
-  font-size: 1.125em;
+  font-size: 0.7rem;
+  @media screen and (max-width: 1000px) {
+    font-size: 0.7rem;
+  }
 `;
