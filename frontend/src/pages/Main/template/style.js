@@ -26,3 +26,8 @@ export const GuideSubTitle = styled(Text)`
   font-size: 1.375rem;
   color: #494949;
 `;
+
+export const LinkContainer = styled.div`
+  width: 100%;
+  margin-top: 30px;
+`;
