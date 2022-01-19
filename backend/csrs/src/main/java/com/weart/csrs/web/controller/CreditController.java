@@ -18,7 +18,7 @@ public class CreditController {
 
     //멤버의 Credit생성해주기
     @PostMapping("api/credit/{creditId}")
-    public Credit createCredit(@PathVariable Long memberid, @RequestBody Credit credit) {
+    public Credit createCredit(@RequestBody Long memberid, @RequestBody Credit credit) {
         return creditService.createCredit(memberid, credit);
     }
 

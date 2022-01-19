@@ -17,7 +17,7 @@ public class MemberDto {
     private Role role;
 
     //MEMBER 객체로 변환
-    public Member toEntity() {
+    public Member toMember() {
         return Member.builder()
                 .id(id)
                 .name(name)

@@ -1,8 +1,6 @@
 package com.weart.csrs.domain.member;
 
 import com.weart.csrs.domain.BaseTimeEntity;
-import com.weart.csrs.domain.member.Role;
-import com.weart.csrs.web.dto.MemberDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,21 +31,16 @@ public class Member extends BaseTimeEntity {
     @Column(nullable = false)
     private String email;
 
-
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(columnDefinition = "varchar(255) default USER")
     private Role role;
 
-    @Column(nullable = false)
-    private String password;
-
     @Builder
-    public Member(Long id, String name, String email, String picture, Role role, String password) {
+    public Member(Long id, String name, String email, Role role) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.role = role;
-        this.password = password;
     }
 
     public Member update(String name, String email, Role role) {
