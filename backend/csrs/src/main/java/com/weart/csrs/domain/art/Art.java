@@ -1,14 +1,17 @@
 package com.weart.csrs.domain.art;
 
 import com.weart.csrs.domain.BaseTimeEntity;
-import com.weart.csrs.domain.member.Member;
 import com.weart.csrs.web.dto.ArtCreateRequestDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import javax.swing.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.time.LocalDateTime;
 
 @Getter
@@ -20,9 +23,9 @@ public class Art extends BaseTimeEntity {
     @Column(name = "ART_ID")
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "MEMBER_ID")
-    private Member member;
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "MEMBER_ID")
+//    private Member member;
 
     @Column(length = 100, nullable = false)
     private String title;
@@ -46,7 +49,7 @@ public class Art extends BaseTimeEntity {
     private Boolean isEndBid;
 
     @Builder
-    public Art(String title, Long memberId, String content, Long auctionStartPrice, LocalDateTime auctionStartDate, LocalDateTime auctionEndDate) {
+    public Art(String title, String content, Long auctionStartPrice, LocalDateTime auctionStartDate, LocalDateTime auctionEndDate) {
         this.title = title;
         this.content = content;
         this.auctionStartPrice = auctionStartPrice;

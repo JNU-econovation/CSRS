@@ -2,7 +2,7 @@ package com.weart.csrs.web.controller;
 
 import com.weart.csrs.service.ArtService;
 import com.weart.csrs.web.dto.ArtCreateRequestDto;
-import com.weart.csrs.web.dto.ArtResponeDto;
+import com.weart.csrs.web.dto.ArtResponseDto;
 import com.weart.csrs.web.dto.ArtWithPaginationDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +25,7 @@ public class ArtController {
     }
 
     @GetMapping("api/arts/{artId}")
-    public ArtResponeDto selectArt(@PathVariable Long artId) {
+    public ArtResponseDto selectArt(@PathVariable Long artId) {
         return artService.selectArt(artId);
     }
 
@@ -46,7 +46,7 @@ public class ArtController {
     }
 
     @GetMapping("api/artnames/{artName}")
-    public List<ArtResponeDto> searchByName(@PathVariable String artName) {
+    public List<ArtResponseDto> searchByName(@PathVariable String artName) {
         return artService.selectArtByTile(artName);
     }
 }

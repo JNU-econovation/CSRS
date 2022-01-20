@@ -28,6 +28,11 @@ public class ReliabilityController {
         this.reliabilityService = reliabilityService;
     }
 
+    @PostMapping("api/reliability")
+    public Long createReliability(@RequestBody ReliabilityRequestDto reliabilityRequestDto) {
+        return reliabilityService.createReliability(reliabilityRequestDto);
+    }
+
 
     //memberid로 reliability 조회하기
     @GetMapping("api/reliability/{id}")

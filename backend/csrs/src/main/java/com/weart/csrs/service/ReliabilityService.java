@@ -21,6 +21,7 @@ public class ReliabilityService {
 
     private final ReliabilityRepository reliabilityRepository;
 
+
     public Reliability selectReliabilityById(Long id){
         Reliability MemberReliability = reliabilityRepository.findByMemberId(id)
                 .orElseThrow(() -> new RuntimeException(NOT_FOUND_MEMBER_MESSAGE));
@@ -32,6 +33,12 @@ public class ReliabilityService {
     @Autowired
     public ReliabilityService(ReliabilityRepository reliabilityRepository) {
         this.reliabilityRepository = reliabilityRepository;
+    }
+
+    @Transactional
+    public Long createReliability(ReliabilityRequestDto reliabilityRequestDto){
+        Reliability reliability = reliabilityRepository.save(reliabilityRequestDto.toReliability());
+        return reliability.getId();
     }
 
 

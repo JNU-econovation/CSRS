@@ -20,4 +20,11 @@ public class ReliabilityRequestDto {
         this.successfulBid = reliability.getSuccessfulBid();
         this.warningScore = reliability.getWarningScore();
     }
+
+    public Reliability toReliability() {
+        return Reliability.builder()
+                .successfulBid(successfulBid)
+                .warningScore(warningScore)
+                .build();
+    }
 }
