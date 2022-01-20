@@ -1,6 +1,7 @@
 package com.weart.csrs.web.dto.controller;
 
 import com.weart.csrs.service.WatchListService;
+import com.weart.csrs.web.dto.WatchResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -29,10 +32,10 @@ public class WatchListController {
         return watchListService.selectWatchListById(watchlistId);
     }
 
-//    @GetMapping("api/watchlist/list")
-//    public List<WatchResponseDto> selectAllWatchList() {
-//        return watchListService.selectAll();
-//    }
+    @GetMapping("api/watchlist/list")
+    public List<WatchResponseDto> selectAllWatchList() {
+        return watchListService.selectAll();
+    }
 
 
     @DeleteMapping("api/watchlist/{watchlistId}")

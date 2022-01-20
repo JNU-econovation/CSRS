@@ -1,20 +1,22 @@
 package com.weart.csrs.domain.credit;
 
-import com.weart.csrs.domain.member.Member;
-import com.weart.csrs.domain.successfulbid.SuccessfulBid;
+import com.weart.csrs.web.dto.CreditRequestDto;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.DynamicInsert;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@DynamicInsert
 @Entity
 public class Credit {
     @Id
@@ -22,27 +24,30 @@ public class Credit {
     @Column(name = "CREDIT_ID")
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "MEMBER_ID", referencedColumnName = "MEMBER_ID")
-    public Member member;
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "MEMBER_ID", referencedColumnName = "MEMBER_ID")
+//    public Member member;
 
-    @OneToOne
-    @JoinColumn(name = "SUCCESSFUL_BID_ID")
-    private SuccessfulBid successfulBid;
+//    @OneToOne
+////    @JoinColumn(name = "SUCCESSFUL_BID_ID")
+////    private SuccessfulBid successfulBid;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "Long default 500L")
     private Long balance;
 
 
     @Builder
-    public Credit(Long id, SuccessfulBid successfulBid, Long balance) {
+    public Credit(Long id, Long balance) {
         this.id = id;
-        this.successfulBid = successfulBid;
+//        this.successfulBid = successfulBid;
         this.balance = balance;
     }
-    public void update(Credit credit) {
-        this.member = credit.member;
-        this.successfulBid = credit.successfulBid;
-        this.balance = credit.balance;
+
+    public void update(CreditRequestDto creditRequestDto) {
+//        this.member = credit.member;
+//        this.successfulBid = credit.successfulBid;
+        this.balance = creditRequestDto.getBalance();
     }
+
+
 }

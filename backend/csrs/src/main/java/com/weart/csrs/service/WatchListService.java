@@ -28,23 +28,6 @@ public class WatchListService {
         WatchList watchList = watchListRepository.save(toWatchList(art));
         return art.getId();
     }
-//    @Transactional
-//    public WatchResponseDto selectWatchListByMemberId(Long memberId){
-//        WatchList memberWatchList = watchListRepository.findById(memberId)
-//                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_ART_MESSAGE));
-//        return new WatchResponseDto(memberWatchList);
-//    }
-//    @Transactional
-//    public List<WatchResponseDto> selectAll(){
-//        return watchListRepository.findAll().stream()
-//                .map(WatchList::new)
-//                .collect(Collectors.toList());
-//    }
-    @Transactional
-    public Long selectWatchListById(Long watchlistId){
-        WatchList watchList = watchListRepository.getById(watchlistId);
-        return watchList.getId();
-    }
 
     //장바구니 삭제 기능
     @Transactional
@@ -54,5 +37,25 @@ public class WatchListService {
         watchListRepository.delete(watchList);
         return watchList.getId();
     }
+
+//    @Transactional
+//    public WatchResponseDto selectWatchListByMemberId(Long memberId){
+//        WatchList memberWatchList = watchListRepository.findById(memberId)
+//                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_ART_MESSAGE));
+//        return new WatchResponseDto(memberWatchList);
+//    }
+    @Transactional
+    public List<WatchResponseDto> selectAll(){
+        return watchListRepository.findAll().stream()
+                .map(WatchResponseDto::new)
+                .collect(Collectors.toList());
+    }
+    @Transactional
+    public Long selectWatchListById(Long watchlistId){
+        WatchList watchList = watchListRepository.getById(watchlistId);
+        return watchList.getId();
+    }
+
+
 }
 
