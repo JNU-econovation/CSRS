@@ -16,7 +16,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 
@@ -38,7 +37,7 @@ public class Reliability {
     @JoinColumn(name = "SUCCESSFUL_BID_ID")
     private SuccessfulBid successfulBid;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "Long default 0L")
     private Long warningScore;
 
     @Builder
@@ -47,6 +46,7 @@ public class Reliability {
         this.successfulBid = successfulBid;
         this.warningScore = warningScore;
     }
+
     public void update(ReliabilityRequestDto reliabilityRequestDto) {
         this.successfulBid = reliabilityRequestDto.getSuccessfulBid();
         this.warningScore = reliabilityRequestDto.getWarningScore();

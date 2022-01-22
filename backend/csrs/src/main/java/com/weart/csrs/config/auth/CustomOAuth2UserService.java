@@ -20,6 +20,9 @@ import java.util.Collections;
 
 @RequiredArgsConstructor
 @Service
+//소셜 로그인의 경우는 조금 다른데, Security Config에 서비스 클래스를 명시해주는 것은 똑같지만 UserService 인터페이스를 구현하는 것이 아닌,
+// OAuth2UserService<R extends OAuth2UserRequest, U extends OAuth2User> 인터페이스를 구현한 클래스를 걸어주어야 합니다.
+
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
     private final MemberRepository memberRepository;
     private final HttpSession httpSession;

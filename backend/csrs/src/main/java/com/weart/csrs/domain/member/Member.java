@@ -25,10 +25,10 @@ public class Member extends BaseTimeEntity {
     @Column(name = "MEMBER_ID")
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
 
-    @Column(nullable = false)
+    @Column(length = 50, unique = true, nullable = false)
     private String email;
 
     @Enumerated(EnumType.STRING)

@@ -1,4 +1,4 @@
-package com.weart.csrs.web.dto.controller;
+package com.weart.csrs.web.controller;
 
 import com.weart.csrs.domain.reliability.Reliability;
 import com.weart.csrs.domain.successfulbid.SuccessfulBid;
@@ -6,7 +6,6 @@ import com.weart.csrs.service.ReliabilityService;
 import com.weart.csrs.web.dto.ReliabilityRequestDto;
 import com.weart.csrs.web.dto.ReliabilityResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +17,7 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
-@ComponentScan({"com.weart.csrs.service.ReliabilityService"})
+//@ComponentScan({"com.weart.csrs.service.ReliabilityService"})
 @Controller
 public class ReliabilityController {
 
@@ -28,10 +27,10 @@ public class ReliabilityController {
         this.reliabilityService = reliabilityService;
     }
 
-    @PostMapping("api/reliability")
-    public Long createReliability(@RequestBody ReliabilityRequestDto reliabilityRequestDto) {
-        return reliabilityService.createReliability(reliabilityRequestDto);
-    }
+//    @PostMapping("api/reliability")
+//    public Long createReliability(@RequestBody ReliabilityRequestDto reliabilityRequestDto) {
+//        return reliabilityService.createReliability(reliabilityRequestDto);
+//    }
 
 
     //memberid로 reliability 조회하기
@@ -74,4 +73,3 @@ public class ReliabilityController {
         reliabilityService.minusReliability(reliabilityResponseDto, flag);
     }
 }
-

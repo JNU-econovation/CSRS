@@ -11,13 +11,15 @@ import java.util.Map;
 @Getter
 public class OAuthAttributes {
     private Map<String, Object> attributes;  // OAuth2 반환하는 유저 정보 Map
+    private String registrationId;
     private String nameAttributeKey;
     private String name;
     private String email;
 
     @Builder
-    public OAuthAttributes(Map<String, Object> attributes, String nameAttributeKey, String name, String email) {
+    public OAuthAttributes(Map<String, Object> attributes,String registrationId, String nameAttributeKey, String name, String email) {
         this.attributes = attributes;
+        this.registrationId = registrationId;
         this.nameAttributeKey = nameAttributeKey;
         this.name = name;
         this.email = email;
