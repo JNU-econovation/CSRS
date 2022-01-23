@@ -24,10 +24,12 @@ public class ArtCreateRequestDto {
     private String category;
     private String uploadFilePath;
     private Long auctionStartPrice;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime auctionStartDate;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime auctionEndDate;
     private MultipartFile multipartFile;
-    
+
     public Art toArt() {
         return Art.builder()
                 .title(title)
