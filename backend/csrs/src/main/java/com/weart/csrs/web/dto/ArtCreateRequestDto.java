@@ -1,7 +1,6 @@
 package com.weart.csrs.web.dto;
 
 import com.weart.csrs.domain.art.Art;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,11 +8,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.StringTokenizer;
-
-import static com.weart.csrs.util.Parser.parsingDate;
 
 @Getter
 @Setter
