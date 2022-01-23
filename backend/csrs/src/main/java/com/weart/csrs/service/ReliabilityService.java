@@ -24,7 +24,7 @@ public class ReliabilityService {
 
 
     public Reliability selectReliabilityById(Long id){
-        Reliability MemberReliability = reliabilityRepository.findByMemberId(id)
+        Reliability MemberReliability = reliabilityRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException(NOT_FOUND_MEMBER_MESSAGE));
         return MemberReliability;
     }
@@ -80,10 +80,10 @@ public class ReliabilityService {
 
     //UPDATE
     @Transactional
-    public Reliability update(Long memberid, ReliabilityRequestDto reliabilityRequestDto) {
+    public Reliability update( ReliabilityRequestDto reliabilityRequestDto) {
         //조회시 없으면 에러 표시
         //반환형 <Optional> Reliability
-        Reliability reliability = reliabilityRepository.findByMemberId(memberid)
+        Reliability reliability = reliabilityRepository.findById(reliabilityRequestDto.getId())
                 .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_MEMBER_MESSAGE));
         reliability.update(reliabilityRequestDto);
         return reliability;

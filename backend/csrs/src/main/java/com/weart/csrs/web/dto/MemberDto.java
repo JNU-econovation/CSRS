@@ -14,6 +14,7 @@ public class MemberDto {
     private Long id;
     private String name;
     private String email;
+    private String password;
     private Role role;
 
     //MEMBER 객체로 변환
@@ -21,15 +22,16 @@ public class MemberDto {
         return Member.builder()
                 .id(id)
                 .name(name)
-                .email(email)
+                .password(password)
                 .role(role)
                 .build();
     }
 
     @Builder
-    public MemberDto(Long id, String name, String email) {
+    public MemberDto(Long id, String name, String email, String password) {
         this.id = id;
         this.name = name;
+        this.password = password;
         this.email = email;
     }
 

@@ -1,5 +1,6 @@
 package com.weart.csrs.domain.credit;
 
+import com.weart.csrs.domain.member.Member;
 import com.weart.csrs.web.dto.CreditRequestDto;
 import lombok.Builder;
 import lombok.Getter;
@@ -7,11 +8,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Getter
 @Setter
@@ -24,9 +28,9 @@ public class Credit {
     @Column(name = "CREDIT_ID")
     private Long id;
 
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "MEMBER_ID", referencedColumnName = "MEMBER_ID")
-//    public Member member;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "MEMBER_ID", referencedColumnName = "MEMBER_ID")
+    private Member member;
 
 //    @OneToOne
 ////    @JoinColumn(name = "SUCCESSFUL_BID_ID")
@@ -44,7 +48,7 @@ public class Credit {
     }
 
     public void update(CreditRequestDto creditRequestDto) {
-//        this.member = credit.member;
+        this.member = creditRequestDto.getMember();
 //        this.successfulBid = credit.successfulBid;
         this.balance = creditRequestDto.getBalance();
     }

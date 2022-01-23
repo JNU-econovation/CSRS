@@ -7,7 +7,6 @@ import com.weart.csrs.web.dto.ReliabilityRequestDto;
 import com.weart.csrs.web.dto.ReliabilityResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -27,23 +26,26 @@ public class ReliabilityController {
         this.reliabilityService = reliabilityService;
     }
 
-//    @PostMapping("api/reliability")
-//    public Long createReliability(@RequestBody ReliabilityRequestDto reliabilityRequestDto) {
-//        return reliabilityService.createReliability(reliabilityRequestDto);
-//    }
+    @PostMapping("api/reliability")
+    public Long createReliability(@RequestBody ReliabilityRequestDto reliabilityRequestDto) {
+        return reliabilityService.createReliability(reliabilityRequestDto);
+    }
 
 
     //memberid로 reliability 조회하기
-    @GetMapping("api/reliability/{id}")
-    public Reliability selectReliabilityByMemberId(@PathVariable Long id) {
-        return reliabilityService.selectReliabilityById(id);
-    }
+//    @GetMapping("api/reliability/{id}")
+//    public Reliability selectReliabilityById(@PathVariable Long id) {
+////        return reliabilityService.selectReliabilityById(id);
+//        return reliabilityService.ge
+//    }
+//    2022.01.23 내일 서현아 힘내.
+
 
     //Map데이터형으로 받아서 해당 유저의 warningScore뿌려주기
     @PutMapping("api/reliability/{id}")
-    public Map<String, Object> requestWarningScore(@PathVariable("MEMBER_ID") Long id, @RequestBody final ReliabilityRequestDto reliabilityRequestDto){
+    public Map<String, Object> requestWarningScore(@PathVariable("RELIABILITY_ID") Long id, @RequestBody final ReliabilityRequestDto reliabilityRequestDto){
         Map<String, Object> response = new HashMap<>();
-        Reliability reliability = reliabilityService.update(id,reliabilityRequestDto);
+        Reliability reliability = reliabilityService.update(reliabilityRequestDto);
         if(reliability != null){
             response.put("result","Success");
             response.put("warningScore",reliability.getWarningScore());

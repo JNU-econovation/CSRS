@@ -1,6 +1,7 @@
 package com.weart.csrs.web.dto;
 
 import com.weart.csrs.domain.credit.Credit;
+import com.weart.csrs.domain.member.Member;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CreditRequestDto {
     private Long balance;
+    private Member member;
 
 //    @Builder
 //    public CreditRequestDto(Long balance) {

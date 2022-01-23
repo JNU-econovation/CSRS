@@ -1,7 +1,9 @@
 package com.weart.csrs.domain.member;
 
 import com.weart.csrs.domain.BaseTimeEntity;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,8 +17,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Getter
+@AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
+@EqualsAndHashCode(of="id")
 @Setter
 public class Member extends BaseTimeEntity {
 
@@ -28,30 +33,22 @@ public class Member extends BaseTimeEntity {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @Column(length = 50, unique = true, nullable = false)
-    private String email;
-
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "varchar(255) default USER")
     private Role role;
 
-    @Builder
-    public Member(Long id, String name, String email, Role role) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.role = role;
-    }
+    @Column(nullable = false)
+    private String password;
 
-    public Member update(String name, String email, Role role) {
-        this.name = name;
-        this.email = email;
-        this.role = role;
-        return this;
-    }
+    @Column(nullable = false)
+    private String email;
 
-    public String getRoleKey() {
-        return this.role.getKey();
-    }
+
+//    public Member update(String name, Role role,String password, String email) {
+//        this.name = name;
+//        this.role = role;
+//        this.password = password;
+//        this.email = email;
+//        return this;
+//    }
 
 }
