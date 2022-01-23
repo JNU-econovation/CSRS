@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.swing.*;
 import java.time.LocalDateTime;
 
 @Getter
@@ -27,11 +26,14 @@ public class Art extends BaseTimeEntity {
     @Column(length = 100, nullable = false)
     private String title;
 
-    @Column(columnDefinition = "Text", length = 500, nullable = false)
+    @Column(columnDefinition = "TEXT", length = 500, nullable = false)
     private String content;
 
     @Column(nullable = false)
     private String category;
+
+    @Column(columnDefinition = "TEXT")
+    private String uploadFilePath;
 
     @Column(nullable = false)
     private Long auctionStartPrice;
@@ -49,10 +51,11 @@ public class Art extends BaseTimeEntity {
     private Boolean isEndBid;
 
     @Builder
-    public Art(String title, Long memberId, String content, String category, Long auctionStartPrice, LocalDateTime auctionStartDate, LocalDateTime auctionEndDate) {
+    public Art(String title, String content, String category, String uploadFilePath, Long auctionStartPrice, LocalDateTime auctionStartDate, LocalDateTime auctionEndDate) {
         this.title = title;
         this.content = content;
         this.category = category;
+        this.uploadFilePath = uploadFilePath;
         this.auctionStartPrice = auctionStartPrice;
         this.auctionStartDate = auctionStartDate;
         this.auctionEndDate = auctionEndDate;

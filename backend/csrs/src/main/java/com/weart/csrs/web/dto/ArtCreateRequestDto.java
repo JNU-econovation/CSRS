@@ -4,6 +4,9 @@ import com.weart.csrs.domain.art.Art;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -13,34 +16,31 @@ import java.util.StringTokenizer;
 import static com.weart.csrs.util.Parser.parsingDate;
 
 @Getter
+@Setter
+@NoArgsConstructor
 public class ArtCreateRequestDto {
     private String title;
     private String content;
     private String category;
+    private String uploadFilePath;
     private Long auctionStartPrice;
     private LocalDateTime auctionStartDate;
     private LocalDateTime auctionEndDate;
-
-    @Builder
-    public ArtCreateRequestDto(String title, String content, String category, Long auctionStartPrice, String auctionStartDate, String auctionEndDate) {
-        this.title = title;
-        this.content = content;
-        this.category = category;
-        this.auctionStartPrice = auctionStartPrice;
-        int[] startDateInfos = parsingDate(auctionStartDate);
-        this.auctionStartDate = LocalDateTime.of(startDateInfos[0], startDateInfos[1], startDateInfos[2], startDateInfos[3], startDateInfos[4]);
-        int[] endDateInfos = parsingDate(auctionEndDate);
-        this.auctionEndDate = LocalDateTime.of(endDateInfos[0], endDateInfos[1], endDateInfos[2], endDateInfos[3], endDateInfos[4]);
-    }
-
+    private MultipartFile multipartFile;
+    
     public Art toArt() {
         return Art.builder()
                 .title(title)
                 .content(content)
                 .category(category)
+                .uploadFilePath(uploadFilePath)
                 .auctionStartPrice(auctionStartPrice)
                 .auctionStartDate(auctionStartDate)
                 .auctionEndDate(auctionEndDate)
                 .build();
+    }
+
+    public void setUploadFilePath(String uploadFilePath) {
+        this.uploadFilePath = uploadFilePath;
     }
 }
