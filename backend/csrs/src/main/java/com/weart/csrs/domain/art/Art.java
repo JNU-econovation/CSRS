@@ -31,6 +31,9 @@ public class Art extends BaseTimeEntity {
     private String content;
 
     @Column(nullable = false)
+    private String category;
+
+    @Column(nullable = false)
     private Long auctionStartPrice;
 
     @Column(nullable = false)
@@ -46,9 +49,10 @@ public class Art extends BaseTimeEntity {
     private Boolean isEndBid;
 
     @Builder
-    public Art(String title, Long memberId, String content, Long auctionStartPrice, LocalDateTime auctionStartDate, LocalDateTime auctionEndDate) {
+    public Art(String title, Long memberId, String content, String category, Long auctionStartPrice, LocalDateTime auctionStartDate, LocalDateTime auctionEndDate) {
         this.title = title;
         this.content = content;
+        this.category = category;
         this.auctionStartPrice = auctionStartPrice;
         this.auctionStartDate = auctionStartDate;
         this.auctionEndDate = auctionEndDate;
@@ -57,6 +61,7 @@ public class Art extends BaseTimeEntity {
     public void update(ArtCreateRequestDto artCreateRequestDto) {
         this.title = artCreateRequestDto.getTitle();
         this.content = artCreateRequestDto.getContent();
+        this.category = category;
         this.auctionStartPrice = artCreateRequestDto.getAuctionStartPrice();
         this.auctionStartDate = artCreateRequestDto.getAuctionStartDate();
         this.auctionEndDate = artCreateRequestDto.getAuctionEndDate();
