@@ -6,7 +6,7 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Getter
-public class ArtResponeDto {
+public class ArtResponseDto {
     private Long id;
     private String title;
     private String content;
@@ -14,7 +14,7 @@ public class ArtResponeDto {
     private LocalDateTime auctionStartDate;
     private LocalDateTime auctionEndDate;
 
-    public ArtResponeDto(Art art) {
+    public ArtResponseDto(Art art) {
         this.id = art.getId();
         this.title = art.getTitle();
         this.content = art.getContent();

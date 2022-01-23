@@ -3,7 +3,7 @@ package com.weart.csrs.service;
 import com.weart.csrs.domain.art.Art;
 import com.weart.csrs.domain.art.ArtRepository;
 import com.weart.csrs.web.dto.ArtCreateRequestDto;
-import com.weart.csrs.web.dto.ArtResponeDto;
+import com.weart.csrs.web.dto.ArtResponseDto;
 import com.weart.csrs.web.dto.ArtWithPaginationDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -31,17 +31,17 @@ public class ArtService {
     }
 
     @Transactional
-    public ArtResponeDto selectArt(Long artId) {
+    public ArtResponseDto selectArt(Long artId) {
         Art art = artRepository.findById(artId)
                 .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_ART_MESSAGE));
-        return new ArtResponeDto(art);
+        return new ArtResponseDto(art);
     }
 
     @Transactional
     public ArtWithPaginationDto selectAllWithPagination(Pageable pageable) {
         Page<Art> all = artRepository.findAll(pageable);
-        List<ArtResponeDto> artResponeDtos = all.getContent().stream()
-                .map(ArtResponeDto::new)
+        List<ArtResponseDto> artResponeDtos = all.getContent().stream()
+                .map(ArtResponseDto::new)
                 .collect(Collectors.toList());
         int totalPage = all.getTotalPages();
         return new ArtWithPaginationDto(artResponeDtos, totalPage);
@@ -67,9 +67,9 @@ public class ArtService {
     }
 
     @Transactional
-    public List<ArtResponeDto> selectArtByTile(String title) {
+    public List<ArtResponseDto> selectArtByTile(String title) {
         List<Art> arts = artRepository.findByTitle(title);
-        List<ArtResponeDto> searchArts = arts.stream().map(ArtResponeDto::new).collect(Collectors.toList());
+        List<ArtResponseDto> searchArts = arts.stream().map(ArtResponseDto::new).collect(Collectors.toList());
         if (searchArts.isEmpty()) {
             throw new IllegalArgumentException(NOT_FOUND_ART_MESSAGE);
         }
