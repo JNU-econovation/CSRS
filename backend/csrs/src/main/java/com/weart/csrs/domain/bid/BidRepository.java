@@ -18,4 +18,7 @@ public interface BidRepository extends JpaRepository<Bid, Long> {
 
     @Query("SELECT b FROM Bid b where b.art.id = :artId order by b.bidPrice desc")
     List<Bid> findBidByArtId(@Param("artId") Long artId, Pageable pageable);
+
+//    @Query("SELECT b from Bid b where b.bidPrice = :bidPrice")
+//    Bid findBidByBidPrice(@Param("bidPrice") Long bidPrice);
 }
