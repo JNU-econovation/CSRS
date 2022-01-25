@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.weart.csrs.util.StringUtils.extractFileNameFromFilePath;
+
 @RequiredArgsConstructor
 @Service
 public class ArtService {
@@ -48,12 +50,15 @@ public class ArtService {
     }
 
     @Transactional
-    public Long updateArt(Long id, ArtCreateRequestDto artCreateRequestDto) {
+    public Long updateArt(Long id, ArtCreateRequestDto artCreateRequestDto) throws IOException {
         Art art = artRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_ART_MESSAGE));
         if (art.checkBidTime()) {
             throw new IllegalArgumentException("수정할 수 없음");
         }
+        String savedFileName = extractFileNameFromFilePath(art.getUploadFilePath());
+        String uploadFilePath = s3Service.update(artCreateRequestDto.getMultipartFile(), "profile", savedFileName);
+        artCreateRequestDto.setUploadFilePath(uploadFilePath);
         art.update(artCreateRequestDto);
 
         return id;

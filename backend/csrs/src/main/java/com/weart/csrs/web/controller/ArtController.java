@@ -36,7 +36,7 @@ public class ArtController {
     }
 
     @PutMapping("api/arts/{artId}")
-    public Long artUpdate(@PathVariable Long artId, @RequestBody ArtCreateRequestDto artCreateRequestDto) {
+    public Long artUpdate(@PathVariable Long artId, @ModelAttribute ArtCreateRequestDto artCreateRequestDto) throws IOException {
         return artService.updateArt(artId, artCreateRequestDto);
     }
 

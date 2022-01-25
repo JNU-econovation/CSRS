@@ -63,7 +63,8 @@ public class Art extends BaseTimeEntity {
     public void update(ArtCreateRequestDto artCreateRequestDto) {
         this.title = artCreateRequestDto.getTitle();
         this.content = artCreateRequestDto.getContent();
-        this.category = category;
+        this.category = artCreateRequestDto.getCategory();
+        this.uploadFilePath = artCreateRequestDto.getUploadFilePath();
         this.auctionStartPrice = artCreateRequestDto.getAuctionStartPrice();
         this.auctionStartDate = artCreateRequestDto.getAuctionStartDate();
         this.auctionEndDate = artCreateRequestDto.getAuctionEndDate();
