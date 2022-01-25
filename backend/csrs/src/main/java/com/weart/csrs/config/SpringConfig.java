@@ -1,8 +1,6 @@
 package com.weart.csrs.config;
 
 import com.weart.csrs.domain.member.MemberRepository;
-import com.weart.csrs.service.MemberService;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration

@@ -6,7 +6,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Getter
 @NoArgsConstructor
@@ -16,7 +22,8 @@ public class Member extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "MEMBER_ID")
+    private Long id;
 
     @Column(nullable = false)
     private String name;
@@ -24,13 +31,12 @@ public class Member extends BaseTimeEntity {
     @Column(nullable = false)
     private String email;
 
-
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(columnDefinition = "varchar(255) default USER")
     private Role role;
 
     @Builder
-    public Member(int id, String name, String email, String picture, Role role) {
+    public Member(Long id, String name, String email, Role role) {
         this.id = id;
         this.name = name;
         this.email = email;

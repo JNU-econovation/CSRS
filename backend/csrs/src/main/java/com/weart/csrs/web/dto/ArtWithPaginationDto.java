@@ -8,11 +8,11 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 public class ArtWithPaginationDto {
-    private List<ArtResponeDto> artResponeDtos;
+    private List<ArtResponseDto> artResponseDto;
     private int totalPages;
 
-    public ArtWithPaginationDto(List<ArtResponeDto> artResponeDtos, int totalPages) {
-        this.artResponeDtos = artResponeDtos;
+    public ArtWithPaginationDto(List<ArtResponseDto> artResponseDto, int totalPages) {
+        this.artResponseDto = artResponseDto;
         this.totalPages = totalPages;
     }
 }

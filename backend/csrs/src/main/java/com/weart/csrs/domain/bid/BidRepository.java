@@ -1,5 +1,7 @@
 package com.weart.csrs.domain.bid;
 
+
+import com.weart.csrs.domain.bid.Bid;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
