@@ -1,14 +1,12 @@
 package com.weart.csrs.service;
 
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -39,6 +37,23 @@ public class S3Service {
         return uploadImageUrl;
     }
 
+    public String update(MultipartFile multiparFile, String dirName, String savedFileName) throws IOException {
+        File uploadFile = convert(multiparFile)
+                .orElseThrow(() -> new IllegalArgumentException("MultipartFile -> File로 전환이 실패했습니다."));
+
+        return update(uploadFile, dirName, savedFileName);
+    }
+
+    private String update(File uploadFile, String dirName, String savedFileName) {
+        String fileName = dirName + "/" + uploadFile.getName();
+        if(isExist(savedFileName)) {
+            amazonS3Client.deleteObject(bucket, savedFileName);
+        }
+        String uploadImageUrl = putS3(uploadFile, fileName);
+        removeNewFile(uploadFile);
+        return uploadImageUrl;
+    }
+
     private String putS3(File uploadFile, String fileName) {
         amazonS3Client.putObject(new PutObjectRequest(bucket, fileName, uploadFile).withCannedAcl(CannedAccessControlList.PublicRead));
         return amazonS3Client.getUrl(bucket, fileName).toString();
@@ -62,5 +77,9 @@ public class S3Service {
         }
 
         return Optional.empty();
+    }
+
+    private boolean isExist(String fileName) {
+        return amazonS3Client.doesObjectExist(bucket, fileName);
     }
 }
