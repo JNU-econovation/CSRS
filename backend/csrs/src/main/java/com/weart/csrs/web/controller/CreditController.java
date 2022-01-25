@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @Slf4j
 @RequiredArgsConstructor
@@ -20,9 +22,9 @@ public class CreditController {
     private final CreditService creditService;
 
     //멤버의 Credit생성해주기
-    @PostMapping("api/credit")
-    public Long createCredit() {
-        return creditService.createCredit();
+    @PostMapping("api/credit/{memberId}")
+    public Long createCredit(@PathVariable Long memberId,@RequestBody CreditRequestDto creditRequestDto) {
+        return creditService.createCredit(memberId, creditRequestDto);
     }
 
     //update
@@ -37,7 +39,7 @@ public class CreditController {
     }
     // 조회
     @GetMapping("api/credit/{memberId}")
-    public Credit selectCredit(@PathVariable Long memberId) {
+    public List<Credit> selectCredit(@PathVariable Long memberId) {
         return creditService.selectCredit(memberId);
     }
 

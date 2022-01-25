@@ -1,9 +1,10 @@
 package com.weart.csrs.domain.member;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.Optional;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
-    Optional<Member> findByName(String name);
+    @Query("select u from Member u where u.id=:id and u.password=:password")
+    Member selectMember(@Param("id")String id, @Param("password")String password);
 }

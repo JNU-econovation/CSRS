@@ -12,7 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class MemberDto {
     private Long id;
-    private String name;
+    private String username;
     private String email;
     private String password;
     private Role role;
@@ -21,7 +21,7 @@ public class MemberDto {
     public Member toMember() {
         return Member.builder()
                 .id(id)
-                .name(name)
+                .username(username)
                 .password(password)
                 .role(role)
                 .build();
@@ -30,7 +30,7 @@ public class MemberDto {
     @Builder
     public MemberDto(Long id, String name, String email, String password) {
         this.id = id;
-        this.name = name;
+        this.username = name;
         this.password = password;
         this.email = email;
     }

@@ -2,10 +2,15 @@ package com.weart.csrs.service;
 
 import com.weart.csrs.domain.credit.Credit;
 import com.weart.csrs.domain.credit.CreditRepository;
+import com.weart.csrs.domain.member.Member;
+import com.weart.csrs.domain.member.MemberRepository;
 import com.weart.csrs.web.dto.CreditRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
 import static com.weart.csrs.web.dto.CreditRequestDto.toCredit;
 
 @RequiredArgsConstructor
@@ -13,11 +18,12 @@ import static com.weart.csrs.web.dto.CreditRequestDto.toCredit;
 public class CreditService {
     private final String NOT_FOUND_CREDIT_MESSAGE = "실제 유저가 없습니다.";
     private final CreditRepository creditRepository;
-
+    private final MemberRepository memberRepository;
 
     @Transactional
-    public Long createCredit() {
-        Credit credit_find = creditRepository.save(toCredit(1000L));
+    public Long createCredit(Long memberId,CreditRequestDto creditRequestDto) {
+        Member member = memberRepository.findById(memberId).orElseThrow(() -> new IllegalArgumentException("No member"));
+        Credit credit_find = creditRepository.save(toCredit(creditRequestDto,member));
         return credit_find.getBalance();
     }
     //Credit 삭제하기
@@ -56,8 +62,8 @@ public class CreditService {
     }
 
     @Transactional
-    public Credit selectCredit(Long memberId) {
-        Credit credit = creditRepository.findByMemberId(memberId);
+    public List<Credit> selectCredit(Long memberId) {
+        List<Credit> credit = creditRepository.findByMemberId(memberId);
         return credit;
     }
 

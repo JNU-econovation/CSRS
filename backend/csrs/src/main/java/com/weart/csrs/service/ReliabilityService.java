@@ -1,50 +1,54 @@
 package com.weart.csrs.service;
 
 import com.weart.csrs.domain.member.Member;
+import com.weart.csrs.domain.member.MemberRepository;
 import com.weart.csrs.domain.reliability.Reliability;
 import com.weart.csrs.domain.reliability.ReliabilityRepository;
 import com.weart.csrs.web.dto.ReliabilityRequestDto;
 import com.weart.csrs.web.dto.ReliabilityResponseDto;
-import lombok.Getter;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
+import static com.weart.csrs.web.dto.ReliabilityRequestDto.toReliability;
 
 
-@Transactional
-@Getter
+@RequiredArgsConstructor
 @Service
 public class ReliabilityService {
 
-    private static final String NOT_FOUND_MEMBER_MESSAGE = "ERR_MESSAGE";
-
+    private final String NOT_FOUND_MEMBER_MESSAGE = "ERR_MESSAGE";
     private final ReliabilityRepository reliabilityRepository;
+    private final MemberRepository memberRepository;
 
-
+    @Transactional
     public Reliability selectReliabilityById(Long id){
         Reliability MemberReliability = reliabilityRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException(NOT_FOUND_MEMBER_MESSAGE));
         return MemberReliability;
     }
 
-    Member member;
-
-    @Autowired
-    public ReliabilityService(ReliabilityRepository reliabilityRepository) {
-        this.reliabilityRepository = reliabilityRepository;
+    @Transactional
+    public List<Reliability> selectReliabilityByMemberId(Long memberId){
+        List<Reliability> MemberReliability = reliabilityRepository.findByMemberId(memberId);
+        return MemberReliability;
     }
 
+
+
     @Transactional
-    public Long createReliability(ReliabilityRequestDto reliabilityRequestDto){
-        Reliability reliability = reliabilityRepository.save(reliabilityRequestDto.toReliability());
+    public Long createReliability(Long memberId, ReliabilityRequestDto reliabilityRequestDto){
+        Member member = memberRepository.findById(memberId).orElseThrow(() -> new IllegalArgumentException("There's No Member"));
+        Reliability reliability = reliabilityRepository.save(toReliability(member, reliabilityRequestDto));
         return reliability.getId();
     }
 
 
     @Transactional
-    public boolean FlagGenerator(Long id,LocalDateTime dateTime, boolean deadFlag){
+    public boolean FlagGenerator(LocalDateTime dateTime, boolean deadFlag){
         LocalDateTime current_Time = LocalDateTime.now();
         if(current_Time == dateTime){
             if(deadFlag == false){
@@ -80,10 +84,11 @@ public class ReliabilityService {
 
     //UPDATE
     @Transactional
-    public Reliability update( ReliabilityRequestDto reliabilityRequestDto) {
+    public Reliability update(Long memberId, ReliabilityRequestDto reliabilityRequestDto) {
         //조회시 없으면 에러 표시
-        //반환형 <Optional> Reliability
-        Reliability reliability = reliabilityRepository.findById(reliabilityRequestDto.getId())
+        Member member = memberRepository.findById(memberId).orElseThrow(() -> new IllegalArgumentException("There's No Member"));
+        Reliability toEntity = toReliability(member,reliabilityRequestDto);
+        Reliability reliability = reliabilityRepository.findById(toEntity.getId())
                 .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_MEMBER_MESSAGE));
         reliability.update(reliabilityRequestDto);
         return reliability;

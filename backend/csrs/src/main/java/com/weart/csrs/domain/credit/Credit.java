@@ -1,6 +1,7 @@
 package com.weart.csrs.domain.credit;
 
 import com.weart.csrs.domain.member.Member;
+import com.weart.csrs.domain.successfulbid.SuccessfulBid;
 import com.weart.csrs.web.dto.CreditRequestDto;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Getter
 @Setter
@@ -32,24 +34,24 @@ public class Credit {
     @JoinColumn(name = "MEMBER_ID", referencedColumnName = "MEMBER_ID")
     private Member member;
 
-//    @OneToOne
-////    @JoinColumn(name = "SUCCESSFUL_BID_ID")
-////    private SuccessfulBid successfulBid;
+    @OneToOne
+    @JoinColumn(name = "SUCCESSFUL_BID_ID")
+    private SuccessfulBid successfulBid;
 
     @Column(columnDefinition = "Long default 500L")
     private Long balance;
 
 
     @Builder
-    public Credit(Long id, Long balance) {
+    public Credit(Long id, SuccessfulBid successfulBid ,Long balance, Member member) {
         this.id = id;
-//        this.successfulBid = successfulBid;
+        this.successfulBid = successfulBid;
         this.balance = balance;
+        this.member = member;
     }
 
     public void update(CreditRequestDto creditRequestDto) {
-        this.member = creditRequestDto.getMember();
-//        this.successfulBid = credit.successfulBid;
+//        this.successfulBid = creditRequestDto.getSuccessfulBid();
         this.balance = creditRequestDto.getBalance();
     }
 

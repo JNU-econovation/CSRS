@@ -3,15 +3,13 @@ package com.weart.csrs.web.controller;
 import com.weart.csrs.service.MemberService;
 import com.weart.csrs.web.dto.MemberSaveRequestDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @RequiredArgsConstructor
@@ -19,31 +17,33 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    @GetMapping("/signup")
-    public String signup() {
-        return "signup";
+
+    @PostMapping("api/signup")
+    public String signup(@RequestBody MemberSaveRequestDto memberDto) {
+        return memberService.save(memberDto);
     }
 
-    @PostMapping("/signup")
-    public String signup(MemberSaveRequestDto memberDto) {
-        memberService.save(memberDto);
+    @PostMapping("api/login.do")
+    public String login(@RequestBody MemberSaveRequestDto memberSaveRequestDto, Model model){
+        String name = memberSaveRequestDto.getUsername();
+        String password = memberSaveRequestDto.getPassword();
+        memberService.login(name, password);
+        if(memberSaveRequestDto==null){
+            model.addAttribute("loginMessage","아이디 혹은 비밀번호가 일치하지 않습니다!");
+            return "index";
+        }
+        return "main";
+    }
+
+
+    @DeleteMapping("api/delete/{memberId}")
+    public String deleteMember(@PathVariable Long memberId){
+        memberService.deleteMember(memberId);
         return "redirect:/";
     }
-
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
-
-
-    // 로그아웃 진행
-    @GetMapping("/logout")
-    public String logout(HttpServletRequest request, HttpServletResponse response) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null) {
-            new SecurityContextLogoutHandler().logout(request, response, auth);
-        }
-
-        return "redirect:/login";
+    @PutMapping("api/update/{memberID}")
+    public String updateMember(@PathVariable Long memberId, @RequestBody MemberSaveRequestDto memberSaveRequestDto){
+        memberService.updateMember(memberId, memberSaveRequestDto);
+        return "redirect:/";
     }
 }

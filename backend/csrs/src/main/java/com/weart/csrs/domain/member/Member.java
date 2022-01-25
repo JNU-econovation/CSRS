@@ -3,7 +3,6 @@ package com.weart.csrs.domain.member;
 import com.weart.csrs.domain.BaseTimeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,7 +20,6 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @Builder
 @Entity
-@EqualsAndHashCode(of="id")
 @Setter
 public class Member extends BaseTimeEntity {
 
@@ -31,9 +29,10 @@ public class Member extends BaseTimeEntity {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String name;
+    private String username;
 
     @Enumerated(EnumType.STRING)
+//    @Column(columnDefinition = "Long default 500L")
     private Role role;
 
     @Column(nullable = false)
