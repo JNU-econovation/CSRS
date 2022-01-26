@@ -1,6 +1,7 @@
 package com.weart.csrs.domain.member;
 
 import com.weart.csrs.domain.BaseTimeEntity;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,45 +14,47 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 @Getter
+@AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 @Setter
-public class Member extends BaseTimeEntity {
+public class Member extends BaseTimeEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MEMBER_ID")
     private Long id;
 
+    @Column(nullable = false, unique = true)
+    private String username;
+
+    @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "Long default 500L")
+    private Role role;
+
     @Column(nullable = false)
-    private String name;
+    private String password;
+
+    public Member(String username, String password, String email) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
 
     @Column(nullable = false)
     private String email;
 
-    @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "varchar(255) default USER")
-    private Role role;
 
-    @Builder
-    public Member(Long id, String name, String email, Role role) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.role = role;
-    }
-
-    public Member update(String name, String email, Role role) {
-        this.name = name;
-        this.email = email;
-        this.role = role;
-        return this;
-    }
-
-    public String getRoleKey() {
-        return this.role.getKey();
-    }
+//    public Member update(String name, Role role,String password, String email) {
+//        this.name = name;
+//        this.role = role;
+//        this.password = password;
+//        this.email = email;
+//        return this;
+//    }
 
 }

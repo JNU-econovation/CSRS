@@ -2,66 +2,40 @@ package com.weart.csrs.service;
 
 import com.weart.csrs.domain.member.Member;
 import com.weart.csrs.domain.member.MemberRepository;
-import com.weart.csrs.domain.member.Role;
-import com.weart.csrs.web.dto.MemberDto;
-import lombok.Getter;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.weart.csrs.web.dto.MemberSaveRequestDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
-@Transactional
-@Getter
+@RequiredArgsConstructor
 @Service
 public class MemberService {
-
     private final MemberRepository memberRepository;
-    private final String NOT_FOUND_MEMBER_MESSAGE = "해당 유저가 없습니다";
-    public List<Member> getByName(String name) throws Exception {
-        return memberRepository.findByName(name);
-    }
+    private final String NOT_FOUND_MEMBER_MESSAGE = "찾으시는 유저가 존재하지 않습니다.";
 
-    public Optional<Member> getByEmail(String email) throws Exception {
-        return memberRepository.findByEmail(email);
-    }
-
-    @Autowired
-    public MemberService(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
+    @Transactional
+    public List<Member> login(String username, String password){
+    List<Member> member = memberRepository.selectMember(username, password);
+        return member;
     }
 
     @Transactional
-    public Long createMember(MemberDto memberDto) {
-        memberDto.setEmail(memberDto.getEmail());
-        memberDto.setName(memberDto.getName());
-        memberDto.setRole(Role.valueOf("USER"));
-        Member savedMember = memberRepository.save(memberDto.toMember());
-        return savedMember.getId();
+    public String save(MemberSaveRequestDto requestDto) {
+        Member member = memberRepository.save(requestDto.toEntity());
+        return member.getUsername();
     }
 
     @Transactional
-    public Long updateMember(Long memberId, MemberDto memberDto){
-        Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_MEMBER_MESSAGE));
-        return memberId;
-    }
-
-    @Transactional
-    public Long deleteMember(Long memberId){
-        Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_MEMBER_MESSAGE));
+    public void deleteMember(Long memberId) {
+        Member member = memberRepository.getById(memberId);
         memberRepository.delete(member);
-        return memberId;
     }
 
-    //Email로 계정 하나만 생성 가능.
-//    private void validateDuplicateMember(MEMBER member) {
-//        memberRepository.findByEmail(member.getEmail())
-//                .ifPresent(m -> {
-//                    throw new IllegalStateException("이미 존재하는 회원입니다.");
-//                });
-//    }
-
+    @Transactional
+    public void updateMember(Long memberId, MemberSaveRequestDto memberSaveRequestDto) {
+        Member member = memberRepository.findById(memberId).orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_MEMBER_MESSAGE));
+        memberRepository.save(member);
+    }
 }

@@ -2,6 +2,7 @@ package com.weart.csrs.domain.watchlist;
 
 import com.weart.csrs.domain.BaseTimeEntity;
 import com.weart.csrs.domain.art.Art;
+import com.weart.csrs.domain.member.Member;
 import com.weart.csrs.web.dto.WatchListRequestDto;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,15 +29,20 @@ public class WatchList extends BaseTimeEntity{
     private Long id;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ART_ID")
+    @JoinColumn(name = "MEMBER_ID",referencedColumnName = "MEMBER_ID")
+    private Member member;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ART_ID",referencedColumnName = "ART_ID")
     private Art art;
 
-    @Column(columnDefinition = "boolean default true")
+    @Column(columnDefinition = "boolean default false")
     private Boolean alarmFlag;
 
     @Builder
-    public WatchList(Art art) {
+    public WatchList(Art art, Member member) {
         this.art = art;
+        this.member = member;
     }
 
 
