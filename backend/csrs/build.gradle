@@ -16,6 +16,7 @@ configurations {
 
 repositories {
     mavenCentral()
+	maven { url 'https://repo.spring.io/libs-milestone'}
 }
 
 dependencies {
@@ -39,7 +40,10 @@ dependencies {
 //	h2-Database
 	implementation 'com.h2database:h2'
 	runtimeOnly 'com.h2database:h2'
+	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-aws', version: '2.2.6.RELEASE'
+
 }
+
 
 test {
     useJUnitPlatform()

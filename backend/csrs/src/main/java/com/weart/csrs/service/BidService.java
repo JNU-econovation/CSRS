@@ -7,6 +7,7 @@ import com.weart.csrs.domain.bid.BidRepository;
 import com.weart.csrs.web.dto.BidCreateRequestDto;
 import com.weart.csrs.web.dto.BidResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -28,6 +29,9 @@ public class BidService {
         if (maxBidPrice != null && maxBidPrice >= bidCreateRequestDto.getBidPrice()) {
             throw new IllegalArgumentException(INVALIDATE_BID_PRICE);
         }
+        if(art.checkBidEndTime()){
+            throw new IllegalArgumentException("입찰할 수 없음");
+        }
         Bid bid = bidRepository.save(bidCreateRequestDto.toBid(art, bidCreateRequestDto.getBidPrice()));
         return bid.getId();
     }
@@ -39,11 +43,12 @@ public class BidService {
     }
 
     @Transactional
-    public List<BidResponseDto> selectBidList(Long artId) {
+    public List<BidResponseDto> selectBidList(Long artId, Pageable pageable) {
         Art art = artRepository.findById(artId).orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_ART_MESSAGE));
-        return bidRepository.findBidByArtId(art.getId()).stream()
+        return bidRepository.findBidByArtId(art.getId(), pageable)
+                .stream()
                 .map(BidResponseDto::new)
                 .collect(Collectors.toList());
-    }
 
+    }
 }

@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -20,7 +21,7 @@ public class ArtController {
     private final ArtService artService;
 
     @PostMapping("api/art")
-    public Long artSave(@RequestBody ArtCreateRequestDto artCreateRequestDto) {
+    public Long artSave(@ModelAttribute ArtCreateRequestDto artCreateRequestDto) throws IOException {
         return artService.createArt(artCreateRequestDto);
     }
 
@@ -35,7 +36,7 @@ public class ArtController {
     }
 
     @PutMapping("api/arts/{artId}")
-    public Long artUpdate(@PathVariable Long artId, @RequestBody ArtCreateRequestDto artCreateRequestDto) {
+    public Long artUpdate(@PathVariable Long artId, @ModelAttribute ArtCreateRequestDto artCreateRequestDto) throws IOException {
         return artService.updateArt(artId, artCreateRequestDto);
     }
 

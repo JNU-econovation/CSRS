@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+<<<<<<< HEAD
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +17,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
+=======
+import javax.persistence.*;
+>>>>>>> upstream/dev/be
 import java.time.LocalDateTime;
 
 @Getter
@@ -34,8 +38,14 @@ public class Art extends BaseTimeEntity {
     @Column(length = 100, nullable = false)
     private String title;
 
-    @Column(columnDefinition = "Text", length = 500, nullable = false)
+    @Column(columnDefinition = "TEXT", length = 500, nullable = false)
     private String content;
+
+    @Column(nullable = false)
+    private String category;
+
+    @Column(columnDefinition = "TEXT")
+    private String uploadFilePath;
 
     @Column(nullable = false)
     private Long auctionStartPrice;
@@ -53,9 +63,11 @@ public class Art extends BaseTimeEntity {
     private Boolean isEndBid;
 
     @Builder
-    public Art(String title, String content, Long auctionStartPrice, LocalDateTime auctionStartDate, LocalDateTime auctionEndDate) {
+    public Art(String title, String content, String category, String uploadFilePath, Long auctionStartPrice, LocalDateTime auctionStartDate, LocalDateTime auctionEndDate) {
         this.title = title;
         this.content = content;
+        this.category = category;
+        this.uploadFilePath = uploadFilePath;
         this.auctionStartPrice = auctionStartPrice;
         this.auctionStartDate = auctionStartDate;
         this.auctionEndDate = auctionEndDate;
@@ -64,6 +76,8 @@ public class Art extends BaseTimeEntity {
     public void update(ArtCreateRequestDto artCreateRequestDto) {
         this.title = artCreateRequestDto.getTitle();
         this.content = artCreateRequestDto.getContent();
+        this.category = artCreateRequestDto.getCategory();
+        this.uploadFilePath = artCreateRequestDto.getUploadFilePath();
         this.auctionStartPrice = artCreateRequestDto.getAuctionStartPrice();
         this.auctionStartDate = artCreateRequestDto.getAuctionStartDate();
         this.auctionEndDate = artCreateRequestDto.getAuctionEndDate();
