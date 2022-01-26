@@ -5,13 +5,15 @@ import lombok.Getter;
 
 import java.time.LocalDateTime;
 
+import static com.weart.csrs.util.StringUtils.expressPrice;
+
 @Getter
 public class BidResponseDto {
     private LocalDateTime createdDate;
-    private Long bidPrice;
+    private String bidPrice;
 
     public BidResponseDto(Bid bid) {
         createdDate = bid.getCreatedDate();
-        bidPrice = bid.getBidPrice();
+        bidPrice = expressPrice(bid.getBidPrice());
     }
 }

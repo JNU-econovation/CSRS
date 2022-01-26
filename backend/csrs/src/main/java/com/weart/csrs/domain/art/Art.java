@@ -7,7 +7,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 @Getter
 @NoArgsConstructor
@@ -86,5 +88,9 @@ public class Art extends BaseTimeEntity {
             isEndBid = false;
         }
         return isEndBid;
+    }
+
+    public Long calculateDate(LocalDateTime auctionEndDate) {
+        return ChronoUnit.DAYS.between(LocalDate.now(), LocalDate.from(auctionEndDate));
     }
 }
