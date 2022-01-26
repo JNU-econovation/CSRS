@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class MemberService {
@@ -14,8 +16,8 @@ public class MemberService {
     private final String NOT_FOUND_MEMBER_MESSAGE = "찾으시는 유저가 존재하지 않습니다.";
 
     @Transactional
-    public Member login(String id, String password){
-    Member member = memberRepository.selectMember(id, password);
+    public List<Member> login(String username, String password){
+    List<Member> member = memberRepository.selectMember(username, password);
         return member;
     }
 

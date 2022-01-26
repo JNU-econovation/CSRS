@@ -14,6 +14,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 @Getter
 @AllArgsConstructor
@@ -21,7 +22,7 @@ import javax.persistence.Id;
 @Builder
 @Entity
 @Setter
-public class Member extends BaseTimeEntity {
+public class Member extends BaseTimeEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,11 +33,17 @@ public class Member extends BaseTimeEntity {
     private String username;
 
     @Enumerated(EnumType.STRING)
-//    @Column(columnDefinition = "Long default 500L")
+    @Column(columnDefinition = "Long default 500L")
     private Role role;
 
     @Column(nullable = false)
     private String password;
+
+    public Member(String username, String password, String email) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
 
     @Column(nullable = false)
     private String email;
