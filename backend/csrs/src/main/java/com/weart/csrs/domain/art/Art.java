@@ -11,6 +11,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
+import static com.weart.csrs.util.StringUtils.parseDate;
+
 @Getter
 @NoArgsConstructor
 @Entity
@@ -40,10 +42,10 @@ public class Art extends BaseTimeEntity {
     private Long auctionStartPrice;
 
     @Column(nullable = false)
-    private LocalDateTime auctionStartDate;
+    private LocalDate auctionStartDate;
 
     @Column(nullable = false)
-    private LocalDateTime auctionEndDate;
+    private LocalDate auctionEndDate;
 
     @Transient
     private Boolean isStartBid;
@@ -52,7 +54,7 @@ public class Art extends BaseTimeEntity {
     private Boolean isEndBid;
 
     @Builder
-    public Art(String title, String content, String category, String uploadFilePath, Long auctionStartPrice, LocalDateTime auctionStartDate, LocalDateTime auctionEndDate) {
+    public Art(String title, String content, String category, String uploadFilePath, Long auctionStartPrice, LocalDate auctionStartDate, LocalDate auctionEndDate) {
         this.title = title;
         this.content = content;
         this.category = category;
@@ -68,13 +70,13 @@ public class Art extends BaseTimeEntity {
         this.category = artCreateRequestDto.getCategory();
         this.uploadFilePath = artCreateRequestDto.getUploadFilePath();
         this.auctionStartPrice = artCreateRequestDto.getAuctionStartPrice();
-        this.auctionStartDate = artCreateRequestDto.getAuctionStartDate();
-        this.auctionEndDate = artCreateRequestDto.getAuctionEndDate();
+        this.auctionStartDate = parseDate(artCreateRequestDto.getAuctionStartDate());
+        this.auctionEndDate = parseDate(artCreateRequestDto.getAuctionEndDate());
     }
 
     public Boolean checkBidTime(){
         isStartBid = false;
-        LocalDateTime currentTime = LocalDateTime.now();
+        LocalDate currentTime = LocalDate.now();
         if(currentTime.isAfter(auctionStartDate) || currentTime.isEqual(auctionStartDate)){
             isStartBid = true;
         }
@@ -83,7 +85,7 @@ public class Art extends BaseTimeEntity {
 
     public Boolean checkBidEndTime() {
         isEndBid = true;
-        LocalDateTime currentTime = LocalDateTime.now();
+        LocalDate currentTime = LocalDate.now();
         if (currentTime.isBefore(auctionEndDate)) {
             isEndBid = false;
         }

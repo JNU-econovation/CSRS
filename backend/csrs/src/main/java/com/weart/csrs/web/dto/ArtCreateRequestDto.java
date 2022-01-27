@@ -9,6 +9,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 
+import static com.weart.csrs.util.StringUtils.parseDate;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,10 +20,8 @@ public class ArtCreateRequestDto {
     private String category;
     private String uploadFilePath;
     private Long auctionStartPrice;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalDateTime auctionStartDate;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalDateTime auctionEndDate;
+    private String auctionStartDate;
+    private String auctionEndDate;
     private MultipartFile multipartFile;
 
     public Art toArt() {
@@ -31,8 +31,8 @@ public class ArtCreateRequestDto {
                 .category(category)
                 .uploadFilePath(uploadFilePath)
                 .auctionStartPrice(auctionStartPrice)
-                .auctionStartDate(auctionStartDate)
-                .auctionEndDate(auctionEndDate)
+                .auctionStartDate(parseDate(auctionStartDate))
+                .auctionEndDate(parseDate(auctionEndDate))
                 .build();
     }
 
