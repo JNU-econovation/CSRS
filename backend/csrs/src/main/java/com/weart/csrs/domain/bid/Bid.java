@@ -2,7 +2,6 @@ package com.weart.csrs.domain.bid;
 
 import com.weart.csrs.domain.CreateTimeEntity;
 import com.weart.csrs.domain.art.Art;
-import com.weart.csrs.domain.member.Member;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,17 +28,17 @@ public class Bid extends CreateTimeEntity {
     @JoinColumn(name = "ART_ID")
     private Art art;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "MEMBER_ID")
-    private Member member;
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "MEMBER_ID")
+//    private Member member;
 
     @Column(nullable = false)
     private Long bidPrice;
 
     @Builder
-    public Bid(Art art, Long bidPrice,Member member) {
+    public Bid(Art art, Long bidPrice) {
         this.art = art;
         this.bidPrice = bidPrice;
-        this.member = member;
+//        this.member = member;
     }
 }
