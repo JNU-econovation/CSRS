@@ -23,6 +23,7 @@ public class ArtService {
     private static final String NOT_FOUND_ART_MESSAGE = "해당 예술품을 찾을 수 없습니다.";
     private final ArtRepository artRepository;
     private final S3Service s3Service;
+    private static final int PAGE_UNIT = 18;
 
     @Transactional
     public Long createArt(ArtCreateRequestDto artCreateRequestDto) throws IOException {
@@ -47,6 +48,13 @@ public class ArtService {
                 .collect(Collectors.toList());
         int totalPage = all.getTotalPages();
         return new ArtWithPaginationDto(artResponeDtos, totalPage);
+    }
+
+    @Transactional
+    public Integer selectNewArtPages(Pageable pageable) {
+        Page<Art> all = artRepository.findAll(pageable);
+        int totalPages = all.getTotalPages();
+        return totalPages;
     }
 
     @Transactional
@@ -90,5 +98,12 @@ public class ArtService {
         }
         int totalpage = searchArts.size() / 18 + 1;
         return new ArtWithPaginationDto(searchArts, totalpage);
+    }
+
+    @Transactional
+    public Integer selectCategoryArtPages(String category, Pageable pageable) {
+        List<Art> arts = artRepository.findByCategory(category);
+        int totalPage = arts.size() / PAGE_UNIT + 1;
+        return totalPage;
     }
 }

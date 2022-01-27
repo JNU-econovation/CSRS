@@ -56,4 +56,14 @@ public class ArtController {
     public ArtWithPaginationDto searchByCategory(@PathVariable String artCategory, @PageableDefault(size = 18, sort = "createdDate", direction = Sort.Direction.DESC) Pageable pageable) {
         return artService.selectArtByCategory(artCategory, pageable);
     }
+
+    @GetMapping("api/arts/page")
+    public Integer selectAllArtsPage(@PageableDefault(size = 18, sort = "createdDate", direction = Sort.Direction.DESC) Pageable pageable) {
+        return artService.selectNewArtPages(pageable);
+    }
+
+    @GetMapping("api/arts/page/{category}")
+    public Integer selectAllArtsPageCategory(@PathVariable String category, @PageableDefault(size = 18, sort = "createdDate", direction = Sort.Direction.DESC) Pageable pageable) {
+        return artService.selectCategoryArtPages(category, pageable);
+    }
 }
