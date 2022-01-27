@@ -17,6 +17,8 @@ public class ArtResponseDto {
     private LocalDate auctionStartDate;
     private LocalDate auctionEndDate;
     private Long dueDate;
+    private String category;
+    private String uploadFilePath;
 
     public ArtResponseDto(Art art) {
         this.id = art.getId();
@@ -26,5 +28,7 @@ public class ArtResponseDto {
         this.auctionStartDate = art.getAuctionStartDate();
         this.auctionEndDate = art.getAuctionEndDate();
         dueDate = art.calculateDate(auctionEndDate);
+        category = art.getCategory();
+        uploadFilePath = art.getUploadFilePath();
     }
 }

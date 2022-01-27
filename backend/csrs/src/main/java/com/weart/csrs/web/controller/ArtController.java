@@ -23,9 +23,6 @@ public class ArtController {
 
     @PostMapping("api/art")
     public Long artSave(@ModelAttribute ArtCreateRequestDto artCreateRequestDto) throws IOException {
-        System.out.println("here!!!!!");
-        System.out.println(artCreateRequestDto.getAuctionStartDate().getClass());
-        System.out.println(artCreateRequestDto.getAuctionStartDate());
         return artService.createArt(artCreateRequestDto);
     }
 
@@ -35,7 +32,7 @@ public class ArtController {
     }
 
     @GetMapping("api/arts")
-    public ArtWithPaginationDto selectAllArts(@PageableDefault(size = 21, sort = "createdDate", direction = Sort.Direction.DESC) Pageable pageable) {
+    public ArtWithPaginationDto selectAllArts(@PageableDefault(size = 18, sort = "createdDate", direction = Sort.Direction.DESC) Pageable pageable) {
         return artService.selectAllWithPagination(pageable);
     }
 
@@ -50,8 +47,13 @@ public class ArtController {
         return artId;
     }
 
-    @GetMapping("api/artnames/{artName}")
+    @GetMapping("api/arts/name/{artName}")
     public List<ArtResponseDto> searchByName(@PathVariable String artName) {
         return artService.selectArtByTile(artName);
+    }
+
+    @GetMapping("api/arts/category/{artCategory}")
+    public ArtWithPaginationDto searchByCategory(@PathVariable String artCategory, @PageableDefault(size = 18, sort = "createdDate", direction = Sort.Direction.DESC) Pageable pageable) {
+        return artService.selectArtByCategory(artCategory, pageable);
     }
 }

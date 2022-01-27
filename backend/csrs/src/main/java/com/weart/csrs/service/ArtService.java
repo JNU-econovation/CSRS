@@ -80,4 +80,15 @@ public class ArtService {
         }
         return searchArts;
     }
+
+    @Transactional
+    public ArtWithPaginationDto selectArtByCategory(String category, Pageable pageable){
+        List<Art> arts = artRepository.findByCategory(category);
+        List<ArtResponseDto> searchArts = arts.stream().map(ArtResponseDto::new).collect(Collectors.toList());
+        if (searchArts.isEmpty()) {
+            throw new IllegalArgumentException(NOT_FOUND_ART_MESSAGE);
+        }
+        int totalpage = searchArts.size() / 18 + 1;
+        return new ArtWithPaginationDto(searchArts, totalpage);
+    }
 }

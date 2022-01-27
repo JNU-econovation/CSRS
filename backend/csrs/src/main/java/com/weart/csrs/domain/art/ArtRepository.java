@@ -10,4 +10,7 @@ import java.util.List;
 public interface ArtRepository extends JpaRepository<Art, Long> {
     @Query("SELECT a FROM Art a where a.title = :titleValue ")
     List<Art> findByTitle(@Param("titleValue") String titleValue);
+
+    @Query("SELECT a FROM Art a where a.category = :category")
+    List<Art> findByCategory(@Param("category") String category);
 }
