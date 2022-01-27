@@ -30,4 +30,9 @@ public class BidController {
     public List<BidResponseDto> selectArtBid(@PathVariable Long artId, @PageableDefault(size = 4, sort = "bidPrice", direction = Sort.Direction.DESC) Pageable pageable) {
         return bidService.selectBidList(artId, pageable);
     }
+
+    @GetMapping("api/arts/{artId}/price")
+    public String selectMaxPrice(@PathVariable Long artId) {
+        return bidService.selectBidMaxPrice(artId);
+    }
 }

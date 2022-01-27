@@ -4,6 +4,7 @@ import com.weart.csrs.domain.art.Art;
 import com.weart.csrs.domain.art.ArtRepository;
 import com.weart.csrs.domain.bid.Bid;
 import com.weart.csrs.domain.bid.BidRepository;
+import com.weart.csrs.util.StringUtils;
 import com.weart.csrs.web.dto.BidCreateRequestDto;
 import com.weart.csrs.web.dto.BidResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.weart.csrs.util.StringUtils.expressPrice;
 
 @RequiredArgsConstructor
 @Service
@@ -50,5 +53,12 @@ public class BidService {
                 .map(BidResponseDto::new)
                 .collect(Collectors.toList());
 
+    }
+
+    @Transactional
+    public String selectBidMaxPrice(Long artId) {
+        Art art = artRepository.findById(artId).orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_ART_MESSAGE));
+        Long maxBidPrice = bidRepository.findMaxBidPrice(art.getId());
+        return expressPrice(maxBidPrice);
     }
 }
