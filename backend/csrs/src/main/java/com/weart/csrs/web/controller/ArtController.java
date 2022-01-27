@@ -1,6 +1,7 @@
 package com.weart.csrs.web.controller;
 
 import com.weart.csrs.service.ArtService;
+import com.weart.csrs.service.BidService;
 import com.weart.csrs.web.dto.ArtCreateRequestDto;
 import com.weart.csrs.web.dto.ArtResponseDto;
 import com.weart.csrs.web.dto.ArtWithPaginationDto;
@@ -20,6 +21,7 @@ import java.util.Locale;
 @RequiredArgsConstructor
 public class ArtController {
     private final ArtService artService;
+    private final BidService bidService;
 
     @PostMapping("api/art")
     public Long artSave(@ModelAttribute ArtCreateRequestDto artCreateRequestDto) throws IOException {
@@ -28,7 +30,9 @@ public class ArtController {
 
     @GetMapping("api/arts/{artId}")
     public ArtResponseDto selectArt(@PathVariable Long artId) {
-        return artService.selectArt(artId);
+        ArtResponseDto artResponseDto = artService.selectArt(artId);
+        artResponseDto.setMaxPrice(bidService.selectBidMaxPrice(artId));
+        return artResponseDto;
     }
 
     @GetMapping("api/arts")
