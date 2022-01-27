@@ -58,6 +58,11 @@ public class BidService {
     @Transactional
     public String selectBidMaxPrice(Long artId) {
         Art art = artRepository.findById(artId).orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_ART_MESSAGE));
+        Pageable pageable = null;
+        List<BidResponseDto> bidResponseDtos = selectBidList(art.getId(), pageable);
+        if (bidResponseDtos.isEmpty()) {
+            return "0";
+        }
         Long maxBidPrice = bidRepository.findMaxBidPrice(art.getId());
         return expressPrice(maxBidPrice);
     }
