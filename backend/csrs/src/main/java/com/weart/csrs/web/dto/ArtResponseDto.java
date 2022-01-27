@@ -20,7 +20,6 @@ public class ArtResponseDto {
     private String category;
     private String uploadFilePath;
     private LocalDate createdDate;
-    private String maxPrice;
 
     public ArtResponseDto(Art art) {
         this.id = art.getId();
@@ -33,9 +32,5 @@ public class ArtResponseDto {
         category = art.getCategory();
         uploadFilePath = art.getUploadFilePath();
         createdDate = art.getCreatedDate().toLocalDate();
-    }
-
-    public void setMaxPrice(String maxPrice) {
-        this.maxPrice = maxPrice;
     }
 }

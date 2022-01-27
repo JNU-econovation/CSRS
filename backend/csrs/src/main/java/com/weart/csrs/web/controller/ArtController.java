@@ -30,9 +30,7 @@ public class ArtController {
 
     @GetMapping("api/arts/{artId}")
     public ArtResponseDto selectArt(@PathVariable Long artId) {
-        ArtResponseDto artResponseDto = artService.selectArt(artId);
-        artResponseDto.setMaxPrice(bidService.selectBidMaxPrice(artId));
-        return artResponseDto;
+        return artService.selectArt(artId);
     }
 
     @GetMapping("api/arts")
