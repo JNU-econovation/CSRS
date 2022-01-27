@@ -19,6 +19,7 @@ public class ArtResponseDto {
     private Long dueDate;
     private String category;
     private String uploadFilePath;
+    private LocalDate createdDate;
 
     public ArtResponseDto(Art art) {
         this.id = art.getId();
@@ -30,5 +31,6 @@ public class ArtResponseDto {
         dueDate = art.calculateDate(auctionEndDate);
         category = art.getCategory();
         uploadFilePath = art.getUploadFilePath();
+        createdDate = art.getCreatedDate().toLocalDate();
     }
 }
