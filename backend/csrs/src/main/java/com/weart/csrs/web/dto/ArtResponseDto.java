@@ -2,10 +2,8 @@ package com.weart.csrs.web.dto;
 
 import com.weart.csrs.domain.art.Art;
 import lombok.Getter;
-import software.amazon.ion.Decimal;
 
-import java.text.DecimalFormat;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import static com.weart.csrs.util.StringUtils.expressPrice;
 
@@ -16,8 +14,8 @@ public class ArtResponseDto {
     private String title;
     private String content;
     private String auctionStartPrice;
-    private LocalDateTime auctionStartDate;
-    private LocalDateTime auctionEndDate;
+    private LocalDate auctionStartDate;
+    private LocalDate auctionEndDate;
     private Long dueDate;
 
     public ArtResponseDto(Art art) {

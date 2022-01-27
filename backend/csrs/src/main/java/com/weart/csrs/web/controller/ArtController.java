@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 @Slf4j
@@ -22,6 +23,9 @@ public class ArtController {
 
     @PostMapping("api/art")
     public Long artSave(@ModelAttribute ArtCreateRequestDto artCreateRequestDto) throws IOException {
+        System.out.println("here!!!!!");
+        System.out.println(artCreateRequestDto.getAuctionStartDate().getClass());
+        System.out.println(artCreateRequestDto.getAuctionStartDate());
         return artService.createArt(artCreateRequestDto);
     }
 

@@ -92,7 +92,7 @@ public class Art extends BaseTimeEntity {
         return isEndBid;
     }
 
-    public Long calculateDate(LocalDateTime auctionEndDate) {
+    public Long calculateDate(LocalDate auctionEndDate) {
         return ChronoUnit.DAYS.between(LocalDate.now(), LocalDate.from(auctionEndDate));
     }
 }
