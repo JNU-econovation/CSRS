@@ -18,9 +18,9 @@ public class ArtCreateRequestDto {
     private String category;
     private String uploadFilePath;
     private Long auctionStartPrice;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDateTime auctionStartDate;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDateTime auctionEndDate;
     private MultipartFile multipartFile;
 
