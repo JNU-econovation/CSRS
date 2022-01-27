@@ -29,8 +29,6 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
-	implementation 'org.springframework.boot:spring-boot-starter-mustache'
 
 	implementation 'org.springframework.session:spring-session-jdbc'
 
@@ -40,7 +38,6 @@ dependencies {
 	implementation 'com.h2database:h2'
 	runtimeOnly 'com.h2database:h2'
 	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-aws', version: '2.2.6.RELEASE'
-	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 
 	implementation 'mysql:mysql-connector-java'
 }
